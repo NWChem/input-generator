@@ -10,9 +10,9 @@ import sys
 
 # this is probably reasonable on a system with 4 GB per MPI process
 # (assuming running 1 MPI per core, which is not always optimal)
-stack_mem=1500
+stack_mem=8000
 heap_mem=100
-global_mem=1500
+global_mem=40000 # "unlimited"
 
 # Do not store semidirect CCSD integrals on disk.
 # This is appropriate if your CPU is much faster than your filesystem.
@@ -67,6 +67,43 @@ if ( len(sys.argv) != 5 ):
         print ""
         print "<task> can be energy, optimize, frequency, etc."
         sys.exit()
+
+#------------
+# NSF
+#------------
+def print_nsf(file):
+        file.write('  H    -1.624   1.165   0.598\n')
+        file.write('  N    -1.135   2.057   0.204\n')
+        file.write('  C    -1.278   3.289   0.777\n')
+        file.write('  N    -0.712   4.246   0.042\n')
+        file.write('  C    -0.101   3.578  -1.026\n')
+        file.write('  C     0.617   4.041  -2.143\n')
+        file.write('  O     0.986   5.206  -2.403\n')
+        file.write('  N     1.014   3.021  -3.024\n')
+        file.write('  C     0.686   1.725  -2.813\n')
+        file.write('  N     1.000   0.855  -3.723\n')
+        file.write('  N     0.000   1.221  -1.792\n')
+        file.write('  C    -0.397   2.223  -0.945\n')
+        file.write('  H     2.528  -1.385   0.336\n')
+        file.write('  N     2.475  -0.330   0.519\n')
+        file.write('  C     1.845   0.378   1.472\n')
+        file.write('  N     2.053   1.693   1.387\n')
+        file.write('  C     2.800   1.837   0.221\n')
+        file.write('  C     3.324   2.985  -0.403\n')
+        file.write('  O     3.136   4.179  -0.071\n')
+        file.write('  N     4.066   2.766  -1.558\n')
+        file.write('  C     4.294   1.506  -1.982\n')
+        file.write('  N     5.061   1.437  -3.084\n')
+        file.write('  N     3.872   0.370  -1.406\n')
+        file.write('  C     3.062   0.622  -0.337\n')
+        file.write('  H     0.782  -0.121  -3.689\n')
+        file.write('  H     1.498   1.056  -4.567\n')
+        file.write('  H    -1.793   3.468   1.721\n')
+        file.write('  H     1.555   3.259  -3.831\n')
+        file.write('  H     5.441   2.223  -3.573\n')
+        file.write('  H     5.340   0.593  -3.542\n')
+        file.write('  H     4.430   3.542  -2.073\n')
+        file.write('  H     1.223  -0.080   2.241\n')
 
 #------------
 # Rubrene (Ed Valeev)
@@ -1936,6 +1973,7 @@ def print_ccsd(file):
         if nodisk:
             file.write('  nodisk\n')
         file.write('end\n\n')
+        file.write('#set ccsdt:memlimit 8000\n')
         # Set to true to use OpenMP
         if openmp:
             file.write('set ccsd:use_ccsd_omp T\n')
