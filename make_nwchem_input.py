@@ -1894,7 +1894,8 @@ def print_dft(file,functional,cluster,basis):
             file.write('  grid fine\n')
         #file.write('  convergence energy 1e-9 density 1e-7 gradient 1e-7 lshift 0.2 rabuck 20\n')
         #file.write('  convergence energy 1e-7 density 1e-5 gradient 1e-5 lshift 0.2\n')
-        file.write('  convergence energy 1e-7 density 1e-5 gradient 1e-5\n')
+        #file.write('  convergence energy 1e-7 density 1e-5 gradient 1e-5\n')
+        file.write('  convergence energy 1e-9 density 1e-7 gradient 1e-7\n')
         file.write('  iterations 100\n')
         #file.write('  vectors input atomic output '+cluster+'_'+functional+'_'+basis+'.movecs\n')
         file.write('end\n\n')
@@ -1915,6 +1916,7 @@ def print_scf(file,method,cluster,basis):
         file.write('  thresh 1e-7\n')
         #file.write('  tol2e 1e-14\n')
         #file.write('  vectors input atomic output '+cluster+'_scf_'+basis+'.movecs\n')
+        file.write('  noprint "final vectors analysis"\n')
         file.write('end\n\n')
 
 def print_mp2(file):
@@ -1965,6 +1967,7 @@ def print_tce(file,method):
 def print_driver(file):
         file.write('driver\n')
         file.write('  maxiter 100\n')
+        file.write('  tight\n')
         file.write('end\n\n')
 
 cluster = str(sys.argv[1])
@@ -1974,9 +1977,9 @@ task    = str(sys.argv[4])
 
 name       = cluster+'_'+method+'_'+basis+'_'+task
 #print_citations(cluster)
-filename   = name+'.nw'
-file       = open(filename,'w')
-print_header(file,name)
+prefix     = cluster+'_'+method.replace("(t)","-t")+'_'+basis+'_'+task
+file       = open(prefix+'.nw','w')
+print_header(file,prefix)
 print_geom(file,cluster)
 print_basis(file,basis,method)
 if ( task == "optimize"):
