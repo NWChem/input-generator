@@ -10,9 +10,9 @@ import sys
 
 # this is probably reasonable on a system with 4 GB per MPI process
 # (assuming running 1 MPI per core, which is not always optimal)
-stack_mem=1500
+stack_mem=2000
 heap_mem=100
-global_mem=1500
+global_mem=15000
 
 # Do not store semidirect CCSD integrals on disk.
 # This is appropriate if your CPU is much faster than your filesystem.
@@ -38,7 +38,7 @@ scratch_dir   = '/tmp'
 # IT SHOULD NOT BE NECESSARY TO MODIFY ANYTHING BELOW THIS LINE #
 #################################################################
 
-if ( len(sys.argv) != 5 ):
+if ( len(sys.argv) < 4 ):
         print "Usage: ./make_nwinput.py <cluster> <method> <basis> <task>"
         print ""
         print "<cluster> can be: w1 w2 w3 w4 w5 w6cage w6book w6prism w6cyclic w7 w8s4 w8d2d w9"
@@ -2022,15 +2022,17 @@ def print_mp2(file):
 def print_ccsd(file):
         file.write('ccsd\n')
         file.write('  freeze atomic\n')
-        file.write('  thresh 1e-6\n')
+        file.write('  thresh 1e-3\n')
         # On really fast machines (e.g. Nehalem), regenerating integrals is faster
         # than reading them from local disk unless those disks are SCSI (e.g. Chinook).
         if nodisk:
             file.write('  nodisk\n')
         file.write('end\n\n')
+        # w9 needs this sometimes 
+        file.write('#set ccsd:mirr_st2 F\n')
         # Set to true to use OpenMP
         if openmp:
-            file.write('set ccsd:use_ccsd_omp T\n')
+            file.write('set ccsd:use_ccsd_omp F\n')
             file.write('set ccsd:use_trpdrv_omp T\n\n')
         else:
             file.write('set ccsd:use_ccsd_omp F\n')
@@ -2039,15 +2041,15 @@ def print_ccsd(file):
 def print_tce(file,method):
         file.write('tce\n')
         file.write('  freeze atomic\n')
-        file.write('  scf           \n')
+        file.write('  scf\n')
         file.write('  '+method.replace("r", "").replace("-t","(t)")+'\n')
-        file.write('  thresh 1e-6\n')
+        file.write('  thresh 1e-3\n')
         file.write('  maxiter 100\n')
         if (method=='ccsd' or method=='ccsd(t)' or method=='ccsd-t'):
-            file.write('  2eorb         \n')
-            file.write('  2emet 13      \n')
-            #file.write('  2emet 14      \n')
-            #file.write('  split 4       \n')
+            file.write('  2eorb\n')
+            file.write('  2emet 13\n')
+            #file.write('  2emet 14\n')
+            #file.write('  split 4\n')
         file.write('  attilesize 40\n')
         if ( method == 'ccsd(t)' or method == 'ccsd-t' or method == 'mp4sdq(t)' ):
             file.write('  tilesize 16\n')
@@ -2065,11 +2067,14 @@ def print_driver(file):
 cluster = str(sys.argv[1])
 method  = str(sys.argv[2])
 basis   = str(sys.argv[3])
-task    = str(sys.argv[4])
+prefix  = cluster+'_'+method.replace("(t)","-t")+'_'+basis
+if ( len(sys.argv) > 4 ):
+    task    = str(sys.argv[4])
+    prefix += '_'+task
+else:
+    task = "energy"
 
-name       = cluster+'_'+method+'_'+basis+'_'+task
 #print_citations(cluster)
-prefix     = cluster+'_'+method.replace("(t)","-t")+'_'+basis+'_'+task
 file       = open(prefix+'.nw','w')
 print_header(file,prefix)
 print_geom(file,cluster)
