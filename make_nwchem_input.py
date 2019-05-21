@@ -39,33 +39,33 @@ scratch_dir   = '/tmp'
 #################################################################
 
 if ( len(sys.argv) != 5 ):
-        print "Usage: ./make_nwinput.py <cluster> <method> <basis> <task>"
-        print ""
-        print "<cluster> can be: w1 w2 w3 w4 w5 w6cage w6book w6prism w6cyclic w7 w8s4 w8d2d w9"
-        print "                  w10 w11i434 w11i4412 w11i443 w11i515 w11i551 w12 w13 w14 w15 w16"
-        print "                  w17int w17surf w18 w19 w20dode w20fused w20face w20edge w21"
-        print "                  rubrene or wN for any N not already listed."
-        print ""
-        print "<method> can be pbe0, b3lyp or other supported functional represented by a single string"
-        print "                d-hfx      - direct SCF using the DFT module"
-        print "                d-scf      - direct SCF using the SCF module"
-        print "                sd-scf     - semidirect SCF using the SCF module"
-        print "                d-mp2      - direct MP2"
-        print "                sd-mp2     - semidirect MP2"
-        print "                ri-mp2     - resolution-of-identity MP2 (must use Dunning basis)"
-        print "                \"rccsd(t)\" - partial-direct RHF-CCSD(T) (does not use poing-group symmetry)"
-        print "                \"ccsd(t)\"  - canonical ROHF-CCSD(T) via TCE (expoits D2h and subgroups thereof)"
-        print "                <r>ccsd-t  - (same as above but avoides parentheses in file names)"
-        print "                <tce>      - any method with cc, mbpt or cis in the name will be treated as a TCE method"
-        print ""
-        print "<basis> can be 6-31[1][++]G[**], [aug-]cc-p[c]v[*]z, roos-[dt]z"
-        print "               (where s = * and p = + because otherwise input files are difficult to deal with)"
-        print ""
-        print "               Note: There is no pre-defined RI basis for Pople basis sets,"
-        print "                     so that will not be configured automatically, whereas"
-        print "                     it will be for Dunning basis sets."
-        print ""
-        print "<task> can be energy, optimize, frequency, etc."
+        print("Usage: ./make_nwinput.py <cluster> <method> <basis> <task>")
+        print("")
+        print("<cluster> can be: w1 w2 w3 w4 w5 w6cage w6book w6prism w6cyclic w7 w8s4 w8d2d w9")
+        print("                  w10 w11i434 w11i4412 w11i443 w11i515 w11i551 w12 w13 w14 w15 w16")
+        print("                  w17int w17surf w18 w19 w20dode w20fused w20face w20edge w21")
+        print("                  rubrene or wN for any N not already listed.")
+        print("")
+        print("<method> can be pbe0, b3lyp or other supported functional represented by a single string")
+        print("                d-hfx      - direct SCF using the DFT module")
+        print("                d-scf      - direct SCF using the SCF module")
+        print("                sd-scf     - semidirect SCF using the SCF module")
+        print("                d-mp2      - direct MP2")
+        print("                sd-mp2     - semidirect MP2")
+        print("                ri-mp2     - resolution-of-identity MP2 (must use Dunning basis)")
+        print("                \"rccsd(t)\" - partial-direct RHF-CCSD(T) (does not use poing-group symmetry)")
+        print("                \"ccsd(t)\"  - canonical ROHF-CCSD(T) via TCE (expoits D2h and subgroups thereof)")
+        print("                <r>ccsd-t  - (same as above but avoides parentheses in file names)")
+        print("                <tce>      - any method with cc, mbpt or cis in the name will be treated as a TCE method")
+        print("")
+        print("<basis> can be 6-31[1][++]G[**], [aug-]cc-p[c]v[*]z, roos-[dt]z")
+        print("               (where s = * and p = + because otherwise input files are difficult to deal with)")
+        print("")
+        print("               Note: There is no pre-defined RI basis for Pople basis sets,")
+        print("                     so that will not be configured automatically, whereas")
+        print("                     it will be for Dunning basis sets.")
+        print("")
+        print("<task> can be energy, optimize, frequency, etc.")
         sys.exit()
 
 #------------
@@ -1656,50 +1656,50 @@ def print_w64(file):
 ##############################################
 
 def print_SSX_dimer_1996():
-    print "You are using a geometry from the following paper, which must be cited:"
-    print "S. S. Xantheas, \\textit{J. Chem. Phys.} \\textbf{104}, 8821 (1996)."
-    print "\"On the importance of the fragment relaxation energy terms in the"
-    print "estimation of the basis set superposition error correction to the"
-    print "intermolecular interaction energy.\""
+    print("You are using a geometry from the following paper, which must be cited:")
+    print("S. S. Xantheas, \\textit{J. Chem. Phys.} \\textbf{104}, 8821 (1996).")
+    print("\"On the importance of the fragment relaxation energy terms in the")
+    print("estimation of the basis set superposition error correction to the")
+    print("intermolecular interaction energy.\"")
 
 def print_TTMb_2002():
-    print "You are using a geometry from the following paper, which must be cited:"
-    print "S. S. Xantheas, C. J. Burnham and R. J. Harrison, \\textit{J. Chem. Phys.} \\textbf{116}, 1493 (2002)."
-    print "\"Development of Transferable Interaction Potentials for Water:"
-    print "II. Accurate Energetics of the First Few Water Clusters from First Principles.\""
+    print("You are using a geometry from the following paper, which must be cited:")
+    print("S. S. Xantheas, C. J. Burnham and R. J. Harrison, \\textit{J. Chem. Phys.} \\textbf{116}, 1493 (2002).")
+    print("\"Development of Transferable Interaction Potentials for Water:")
+    print("II. Accurate Energetics of the First Few Water Clusters from First Principles.\"")
 
 def print_SSX_7mer_20XX():
-    print "You are using a geometry from the following (un)paper, which must be cited:"
-    print "E. Apr\'''{a} and S. S. Xantheas, unpublished results."
+    print("You are using a geometry from the following (un)paper, which must be cited:")
+    print("E. Apr\'''{a} and S. S. Xantheas, unpublished results.")
 
 def print_SSX_octamer_2004():
-    print "You are using a geometry from the following paper, which must be cited:"
-    print "S. S. Xantheas and E. Apr\\'''{a}, \\textit{J. Chem. Phys.} \\textbf{120}, 823 (2004)."
-    print "\"The binding energies of the D$_{2d}$ and S$_{4}$ water octamer isomers:"
-    print "High-level electronic structure and empirical potential results.\""
+    print("You are using a geometry from the following paper, which must be cited:")
+    print("S. S. Xantheas and E. Apr\\'''{a}, \\textit{J. Chem. Phys.} \\textbf{120}, 823 (2004).")
+    print("\"The binding energies of the D$_{2d}$ and S$_{4}$ water octamer isomers:")
+    print("High-level electronic structure and empirical potential results.\"")
 
 def print_SSX_11mer_2006():
-    print "You are using a geometry from the following paper, which must be cited:"
-    print "S. Bulusu, S. Yoo, E Apr\\'''{a}, S. Xantheas and X. C. Zeng, \\textit{J. Phys. Chem. A} \\textbf{110}, 11781 (2006)."
-    print "\"Lowest-Energy Structures of Water Clusters (H2O)$_11$ and (H2O)$_13$.\""
+    print("You are using a geometry from the following paper, which must be cited:")
+    print("S. Bulusu, S. Yoo, E Apr\\'''{a}, S. Xantheas and X. C. Zeng, \\textit{J. Phys. Chem. A} \\textbf{110}, 11781 (2006).")
+    print("\"Lowest-Energy Structures of Water Clusters (H2O)$_11$ and (H2O)$_13$.\"")
 
 def print_SSX_dodecamer_2004():
-    print "You are using a geometry from the following paper, which must be cited:"
-    print "G. S. Fanourgakis, E. Apr\\'''{a} and S. S. Xantheas, \\textit{J. Chem. Phys.} \\textbf{121}, 2655 (2004)."
-    print "\"High-level ab-initio calculations for the four low-lying families of minima of (H2O)$_{20}$:"
-    print "I. Estimates of MP2/CBS binding energies and comparison with empirical potentials.\""
+    print("You are using a geometry from the following paper, which must be cited:")
+    print("G. S. Fanourgakis, E. Apr\\'''{a} and S. S. Xantheas, \\textit{J. Chem. Phys.} \\textbf{121}, 2655 (2004).")
+    print("\"High-level ab-initio calculations for the four low-lying families of minima of (H2O)$_{20}$:")
+    print("I. Estimates of MP2/CBS binding energies and comparison with empirical potentials.\"")
 
 def print_SSX_17mer_2005():
-    print "You are using a geometry from the following paper, which must be cited:"
-    print "A. Lagutschenkov, G. S. Fanourgakis, G. Niedner-Schatteburg and S. S. Xantheas, \\textit{J. Chem. Phys.} \\textbf{122}, 194310 (2005)."
-    print "\"The spectroscopic signature of the ``all-surface'' to ``internally solvated'' "
-    print "structural transition in water clusters in the n = 17--21 size regime.\""
+    print("You are using a geometry from the following paper, which must be cited:")
+    print("A. Lagutschenkov, G. S. Fanourgakis, G. Niedner-Schatteburg and S. S. Xantheas, \\textit{J. Chem. Phys.} \\textbf{122}, 194310 (2005).")
+    print("\"The spectroscopic signature of the ``all-surface'' to ``internally solvated'' ")
+    print("structural transition in water clusters in the n = 17--21 size regime.\"")
 
 def print_JRH_polar_2009():
-    print "You are using data from the following paper, which should be cited:"
-    print "J. R. Hammond, N. Govind, K. Kowalski, J. Autschbach and S. S. Xantheas, \\textit{J. Chem. Phys.} \\textbf{131}, 214103 (2009)."
-    print "\"Accurate dipole polarizabilities for water clusters $N$=2--12 at the coupled-cluster"
-    print "level of theory and benchmarking of various density functionals.\""
+    print("You are using data from the following paper, which should be cited:")
+    print("J. R. Hammond, N. Govind, K. Kowalski, J. Autschbach and S. S. Xantheas, \\textit{J. Chem. Phys.} \\textbf{131}, 214103 (2009).")
+    print("\"Accurate dipole polarizabilities for water clusters $N$=2--12 at the coupled-cluster")
+    print("level of theory and benchmarking of various density functionals.\"")
 
 ###############################################################################
 #
@@ -1859,7 +1859,7 @@ def print_basis(file,basis,method):
             file.write('  * library '+basisname+'\n')
             file.write('end\n\n')
             if ( method == "ri-mp2" ):
-                print 'ERROR: <basis> = '+basis+' does not have a corresponding RI basis.\n'
+                print('ERROR: <basis> = '+basis+' does not have a corresponding RI basis.\n')
                 sys.exit()
         elif ( "cc-pv" in basis ):
             file.write('basis "ao basis" spherical noprint\n')
@@ -1971,7 +1971,7 @@ def print_basis(file,basis,method):
             file.write('     0.1607810  0.1457409  0.8297734\n')
             file.write('end\n\n')
         else:
-            print 'ERROR: <basis> = '+basis+' not recognized.'
+            print('ERROR: <basis> = '+basis+' not recognized.')
             sys.exit()
 
 
@@ -2110,7 +2110,7 @@ elif ( method == "pbe0" ):
         print_dft(file,method,cluster,basis)
         file.write('task dft '+task+'\n\n')
 else:
-        print 'WARNING: <method> = '+method+' not recognized.  It is being treated as a DFT functional.'
+        print('WARNING: <method> = '+method+' not recognized.  It is being treated as a DFT functional.')
         print_dft(file,method,cluster,basis)
         file.write('task dft '+task+'\n\n')
 file.close()
