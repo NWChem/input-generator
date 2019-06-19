@@ -26,13 +26,13 @@ openmp = True
 # this is the directory where the RTDB and MOVECS files will be written.
 # in many cases, it is reasonable to have this path be in your home directory.
 # the filesystem on which this directory is located must be shared (e.g. NFS, GPFS, Lustre)
-permanent_dir = '.'
+permanent_dir = '/scratch/jrhammon'
 # the scratch disk is treated like local disk.
 # on almost all machines, it should be the local scratch disk on the node.
 # exceptions to this rule are Blue Gene and Cray systems, which either have
 # no local disk or the local disk (on Cray, /tmp) should not be used since
 # it (1) is small (2) is slow (3) will kill the node if it fills up.
-scratch_dir   = '/tmp'
+scratch_dir   = '/local_scratch'
 
 #################################################################
 # IT SHOULD NOT BE NECESSARY TO MODIFY ANYTHING BELOW THIS LINE #
@@ -2060,19 +2060,21 @@ def print_ccsd(file):
         file.write('ccsd\n')
         file.write('  freeze atomic\n')
         file.write('  thresh 1e-6\n')
+        file.write('  maxiter 100\n')
         # On really fast machines (e.g. Nehalem), regenerating integrals is faster
         # than reading them from local disk unless those disks are SCSI (e.g. Chinook).
         if nodisk:
             file.write('  nodisk\n')
         file.write('end\n\n')
-        file.write('#set ccsdt:memlimit 8000\n')
+        file.write('#set ccsdt:memlimit 8000\n\n')
+        file.write('#set ccsd:converged T\n\n')
         # Set to true to use OpenMP
         if openmp:
             file.write('set ccsd:use_ccsd_omp T\n')
             file.write('set ccsd:use_trpdrv_omp T\n\n')
         else:
             file.write('set ccsd:use_ccsd_omp F\n')
-            file.write('set ccsd:use_trpdrv_omp F\n\n')
+            file.write('set ccsd:use_trpdrv_omp T\n\n')
 
 def print_tce(file,method):
         file.write('tce\n')
