@@ -1791,6 +1791,8 @@ def print_geom(file,cluster):
   #file.write('  symmetry c1\n')
   if cluster == "rubrene":
     print_rubrene(file)
+  elif cluster == "nsf":
+    print_nsf(file)
   elif cluster == "w1":
     print_w1(file)
   elif cluster == "w2":
@@ -1877,6 +1879,7 @@ def print_geom(file,cluster):
       z=0.0
       print_w1_xyz(file,x,y,z)
   else:
+    print('INVALID GEOMETRY')
     sys.exit()
   file.write('end\n\n')
 
