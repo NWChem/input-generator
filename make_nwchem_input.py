@@ -26,13 +26,13 @@ openmp = True
 # this is the directory where the RTDB and MOVECS files will be written.
 # in many cases, it is reasonable to have this path be in your home directory.
 # the filesystem on which this directory is located must be shared (e.g. NFS, GPFS, Lustre)
-permanent_dir = '/scratch/jrhammon'
+permanent_dir = '.'
 # the scratch disk is treated like local disk.
 # on almost all machines, it should be the local scratch disk on the node.
 # exceptions to this rule are Blue Gene and Cray systems, which either have
 # no local disk or the local disk (on Cray, /tmp) should not be used since
 # it (1) is small (2) is slow (3) will kill the node if it fills up.
-scratch_dir   = '/local_scratch'
+scratch_dir   = '/tmp'
 
 #################################################################
 # IT SHOULD NOT BE NECESSARY TO MODIFY ANYTHING BELOW THIS LINE #
