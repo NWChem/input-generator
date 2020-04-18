@@ -20,7 +20,7 @@ nodisk = False
 
 # Use OpenMP support in semidirect CCSD(T).
 # You must compile your binary with USE_OPENMP for this to be effective.
-openmp = True
+openmp = False
 
 # these are the paths where you job will write files
 # this is the directory where the RTDB and MOVECS files will be written.
