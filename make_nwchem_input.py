@@ -10,9 +10,9 @@ import sys
 
 # this is probably reasonable on a system with 4 GB per MPI process
 # (assuming running 1 MPI per core, which is not always optimal)
-stack_mem=8000
+stack_mem=2000
 heap_mem=100
-global_mem=40000 # "unlimited"
+global_mem=2000
 
 # Do not store semidirect CCSD integrals on disk.
 # This is appropriate if your CPU is much faster than your filesystem.
