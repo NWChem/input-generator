@@ -34,6 +34,9 @@ permanent_dir = '.'
 # it (1) is small (2) is slow (3) will kill the node if it fills up.
 scratch_dir   = '/tmp'
 
+# disable symmetry in all geometries
+nosymmetry = False
+
 #################################################################
 # IT SHOULD NOT BE NECESSARY TO MODIFY ANYTHING BELOW THIS LINE #
 #################################################################
@@ -73,8 +76,9 @@ if ( len(sys.argv) != 5 ):
 # NSF
 #------------
 def print_nsf(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  H    -1.624   1.165   0.598\n')
         file.write('  N    -1.135   2.057   0.204\n')
         file.write('  C    -1.278   3.289   0.777\n')
@@ -113,8 +117,9 @@ def print_nsf(file):
 # Rubrene (Ed Valeev)
 #------------
 def print_rubrene(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  C    0.0000000000     0.0000000000     0.7386629749\n')
         file.write('  C   -1.2483730887     0.0888707092     1.4320804162\n')
         file.write('  C   -2.4387379231     0.3562298522     0.7287080969\n')
@@ -191,8 +196,9 @@ def print_rubrene(file):
 #Monomer for phony cluster generation
 #------------
 def print_w1_xyz(file,x,y,z):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O     '+str( 0.00000000+x)+'     '+str(y)+'    '+str( 0.11726921+z)+'\n')
         file.write('  H     '+str( 0.75698224+x)+'     '+str(y)+'    '+str(-0.46907685+z)+'\n')
         file.write('  H     '+str(-0.75698224+x)+'     '+str(y)+'    '+str(-0.46907685+z)+'\n')
@@ -202,8 +208,9 @@ def print_w1_xyz(file,x,y,z):
 #Monomer *** C2v
 #------------
 def print_w1(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O      0.00000000     0.00000000     0.11726921\n')
         file.write('  H      0.75698224     0.00000000    -0.46907685\n')
         file.write('  H     -0.75698224     0.00000000    -0.46907685\n')
@@ -213,8 +220,9 @@ def print_w1(file):
 #Dimer *** Cs
 #------------
 def print_w2(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O      -0.000545       1.517541       0.000000\n')
         file.write('  H       0.094538       0.553640       0.000000\n')
         file.write('  H       0.901237       1.847958       0.000000\n')
@@ -227,8 +235,9 @@ def print_w2(file):
 #Trimer *** C1
 #-------------
 def print_w3(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  H       1.218038       0.017442      -0.022009\n')
         file.write('  O       1.295683      -0.951662      -0.092916\n')
         file.write('  H       1.961236      -1.203127       0.552608\n')
@@ -244,8 +253,9 @@ def print_w3(file):
 #Tetramer *** S4
 #---------------
 def print_w4(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O      -1.367062       1.364510       0.007273\n')
         file.write('  O      -1.364510      -1.367062      -0.007273\n')
         file.write('  O       1.364510       1.367062      -0.007273\n')
@@ -264,8 +274,9 @@ def print_w4(file):
 #Pentamer *** C1
 #---------------
 def print_w5(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O       2.289015       0.225784       0.175030\n')
         file.write('  H       1.837891      -0.638872       0.046444\n')
         file.write('  H       2.811304       0.122451       0.974687\n')
@@ -287,8 +298,9 @@ def print_w5(file):
 #Hexamer_cage *** C1
 #-------------------
 def print_w6cage(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O        .87746626     1.70810837      .47631700\n')
         file.write('  H       1.69363812     1.19357153      .28997545\n')
         file.write('  H       1.16537360     2.60804843      .65262299\n')
@@ -313,8 +325,9 @@ def print_w6cage(file):
 #Hexamer_book *** C1
 #-------------------
 def print_w6book(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O        .12690919     1.55143405      .88294964\n')
         file.write('  H        .97284357     1.51744599      .37215837\n')
         file.write('  H        .28507553     2.15693315     1.61278908\n')
@@ -339,8 +352,9 @@ def print_w6book(file):
 #Hexamer_prism *** C1
 #--------------------
 def print_w6prism(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O      -1.98809642     1.07259854     -.17008272\n')
         file.write('  H      -2.65432215     1.75406534     -.29457427\n')
         file.write('  H      -1.12410682     1.54133723     -.16808174\n')
@@ -365,8 +379,9 @@ def print_w6prism(file):
 #Hexamer_Cyclic *** S6
 #---------------------
 def print_w6cyclic(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O        .00023538     2.69029255      .14950471\n')
         file.write('  O      -2.32998012    -1.34494169      .14950441\n')
         file.write('  O       2.32998012     1.34494169     -.14950441\n')
@@ -391,8 +406,9 @@ def print_w6cyclic(file):
 #Heptamer (n=7)
 #--------------
 def print_w7(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O      -0.46306507    -2.84560143     0.34712980\n')
         file.write('  H      -0.31185448    -3.74723642     0.05234746\n')
         file.write('  H      -0.60259983    -2.31575342    -0.47038548\n')
@@ -420,8 +436,9 @@ def print_w7(file):
 #Octamer *** S4
 #--------------
 def print_w8s4(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O       1.99300294     -.06309578     1.47601417\n')
         file.write('  O      -1.99300294      .06309578     1.47601417\n')
         file.write('  O       -.06309578    -1.99300294    -1.47601417\n')
@@ -452,8 +469,9 @@ def print_w8s4(file):
 #Octamer *** D2d
 #---------------
 def print_w8d2d(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O      -1.46966769     1.46966769     1.34326600\n')
         file.write('  O       1.46966769    -1.46966769     1.34326600\n')
         file.write('  O       1.46966769     1.46966769    -1.34326600\n')
@@ -484,8 +502,9 @@ def print_w8d2d(file):
 #Nonamer (n=9)
 #-------------
 def print_w9(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O      -0.14423567    -3.30115048     0.03928978\n')
         file.write('  H      -0.32449295    -3.99879230    -0.59601201\n')
         file.write('  H      -0.88532777    -2.65077353    -0.06170448\n')
@@ -519,8 +538,9 @@ def print_w9(file):
 #Decamer (n=10)
 #--------------
 def print_w10(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O      -1.55682959     1.99913676     1.22533588\n')
         file.write('  H      -0.59298827     2.17569825     1.30499409\n')
         file.write('  H      -1.99557150     2.68355859     1.73849182\n')
@@ -557,8 +577,9 @@ def print_w10(file):
 #Endecamer (n=11), 434 Isomer
 #----------------------------
 def print_w11i434(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O      -2.08119667    -2.26673485    -0.52122025\n')
         file.write('  H      -2.87105167    -2.78737932    -0.69063304\n')
         file.write('  H      -2.37048203    -1.48052425     0.00808991\n')
@@ -598,8 +619,9 @@ def print_w11i434(file):
 #Endecamer (n=11), 4412 Isomer
 #-----------------------------
 def print_w11i4412(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O       2.51766192     0.53321759    -1.03874478\n')
         file.write('  H       1.86897322    -0.14656265    -1.30684503\n')
         file.write('  H       2.10586438     1.37269025    -1.30696563\n')
@@ -639,8 +661,9 @@ def print_w11i4412(file):
 #Endecamer (n=11), 443 Isomer
 #----------------------------
 def print_w11i443(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O       1.73475650    -0.85921782     0.23574306\n')
         file.write('  H       1.99137662    -1.80301680     0.20404462\n')
         file.write('  H       1.09679422    -0.75299981    -0.49721552\n')
@@ -680,8 +703,9 @@ def print_w11i443(file):
 #Endecamer (n=11), 515 Isomer
 #----------------------------
 def print_w11i515(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O      -2.05673439    -2.24219020    -0.59070364\n')
         file.write('  H      -2.85960922    -2.71216775    -0.83194231\n')
         file.write('  H      -2.31170553    -1.28779385    -0.48591844\n')
@@ -721,8 +745,9 @@ def print_w11i515(file):
 #Endecamer (n=11), 551 Isomer
 #----------------------------
 def print_w11i551(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O      -0.44679161    -3.11807829     0.07512616\n')
         file.write('  H      -0.47083707    -4.07016462     0.20484203\n')
         file.write('  H       0.42313859    -2.80647073     0.44156921\n')
@@ -762,8 +787,9 @@ def print_w11i551(file):
 #Dodecamer (n=12)
 #----------------
 def print_w12(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O       1.79799517    -2.87189360    -0.91374020\n')
         file.write('  O       0.96730604    -2.75911220     1.62798799\n')
         file.write('  O       1.65380168    -0.07006642    -1.01974524\n')
@@ -806,8 +832,9 @@ def print_w12(file):
 #n=13
 #----
 def print_w13(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O      -1.72139424     0.02340552    -0.51045640\n')
         file.write('  H      -1.41945833    -0.19918539     0.39792084\n')
         file.write('  H      -2.08410215     0.92470087    -0.43342046\n')
@@ -853,8 +880,9 @@ def print_w13(file):
 #n=14
 #----
 def print_w14(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O       0.16950902    -3.62933548    -1.48729544\n')
         file.write('  H       0.98770719    -3.06650603    -1.47350004\n')
         file.write('  H       0.36558718    -4.36990691    -2.06811647\n')
@@ -903,8 +931,9 @@ def print_w14(file):
 #n=15
 #----
 def print_w15(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O      -0.41037728     3.06338557    -2.19453935\n')
         file.write('  H      -1.10225722     3.15700229    -1.50322402\n')
         file.write('  H      -0.55868201     3.78135241    -2.81686194\n')
@@ -956,8 +985,9 @@ def print_w15(file):
 #n=16
 #----
 def print_w16(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O       1.41406651     1.47898306     1.34080339\n')
         file.write('  H       1.49686076     1.45044122     0.36223864\n')
         file.write('  H       1.62064251     2.40207704     1.57178605\n')
@@ -1012,8 +1042,9 @@ def print_w16(file):
 #n=17 (Interior)
 #---------------
 def print_w17int(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O      -0.01493103    -0.11597399     0.08504794\n')
         file.write('  H      -0.54830827    -0.79672051     0.54924004\n')
         file.write('  H       0.26142249     0.50039437     0.79799914\n')
@@ -1071,8 +1102,9 @@ def print_w17int(file):
 #n=17 (Surface)
 #--------------
 def print_w17surf(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O       0.23692669    -4.65683721     0.48774215\n')
         file.write('  H      -0.51925947    -4.31137465     1.03257353\n')
         file.write('  H       0.41856682    -5.54767870     0.79964933\n')
@@ -1130,8 +1162,9 @@ def print_w17surf(file):
 #n=18 (Surface)
 #--------------
 def print_w18(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O       2.05847074    -4.03432286     1.31047808\n')
         file.write('  H       1.18052907    -4.40859785     1.49696787\n')
         file.write('  H       1.97818927    -3.09758325     1.55869811\n')
@@ -1192,10 +1225,10 @@ def print_w18(file):
 #n=19 (Interior)
 #---------------
 def print_w19(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O      -1.78991610     1.51321269    -1.17846555\n')
         file.write('  H      -2.63160242     1.02336537    -1.09895002\n')
         file.write('  H      -1.15355746     0.93276870    -0.69523130\n')
@@ -1260,8 +1293,9 @@ def print_w19(file):
 #------------------------
 #MP2/aug-cc-pVTZ  delta E=209.28 kcal/mol
 def print_w20dode(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O       2.21363671     3.19691705     0.68721850\n')
         file.write('  O       3.65057365     0.72957220     0.88213303\n')
         file.write('  O       0.12378993     3.10718406     2.42529051\n')
@@ -1329,8 +1363,9 @@ def print_w20dode(file):
 #-----------------------
 #MP2/aug-cc-pVTZ   delta E=217.88 kcal/mol
 def print_w20fused(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O      -0.00011170     1.89124892     5.56014624\n')
         file.write('  O       2.01365707    -0.13154392     5.65472774\n')
         file.write('  O       0.13154392     2.01365707    -5.65472774\n')
@@ -1398,8 +1433,9 @@ def print_w20fused(file):
 #------------------------------------------
 #MP2/aug-cc-pVTZ  delta E=218.45 kcal/mol
 def print_w20face(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O       0.52945249    -1.32341961    -2.30158189\n')
         file.write('  H       0.57230430    -0.42717289    -2.66988776\n')
         file.write('  H       1.20070409    -1.32066723    -1.58236699\n')
@@ -1467,8 +1503,9 @@ def print_w20face(file):
 #------------------------------------------
 #MP2/aug-cc-pVTZ   delta E=220.32 kcal/mol
 def print_w20edge(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O      -1.39543275     2.31657627     1.37046631\n')
         file.write('  H      -0.92662369     1.46817589     1.52206631\n')
         file.write('  H      -2.32442996     2.12591716     1.59673517\n')
@@ -1535,8 +1572,9 @@ def print_w20edge(file):
 #n=21 (Surface)
 #--------------
 def print_w21(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('  O       2.88102880     1.35617710    -1.35936865\n')
         file.write('  H       2.58653411     2.28696609    -1.45609052\n')
         file.write('  H       3.32093709     1.29343465    -0.49116710\n')
@@ -1606,8 +1644,9 @@ def print_w21(file):
 #n=64 (Graham Fletcher)
 #--------------
 def print_w64(file):
-        file.write('geometry units angstrom noautoz noprint\n')
-        #file.write('  symmetry c1\n')
+        file.write('geometry units angstrom\n')
+        if nosymmetry:
+            file.write('  symmetry c1\n')
         file.write('   O          5.3341355614   2.2822875147   2.5569123279\n')
         file.write('   H          6.1242446995   2.3804428156   3.0638359324\n')
         file.write('   H          4.6164505920   2.2847341851   3.1699382266\n')
@@ -1881,8 +1920,192 @@ def print_c60(file):
         file.write('   C   -2.279809890  -2.580456608  -0.724000000\n')
         file.write('end\n\n')
 
+def print_c180(file):
+        file.write('geometry print xyz units angstrom autosym\n')
+        file.write('   C    -2.533905    4.505798    3.696991\n')
+        file.write('   C    -2.543777    5.253937    2.495453\n')
+        file.write('   C    -3.680359    4.865646    1.748550\n')
+        file.write('   C    -4.373383    3.876556    2.487686\n')
+        file.write('   C    -3.664429    3.653961    3.692154\n')
+        file.write('   C    -0.089706    4.651947    3.795303\n')
+        file.write('   C    -0.097397    5.423141    2.550980\n')
+        file.write('   C    -1.324722    5.629715    1.846893\n')
+        file.write('   C    -1.304596    4.099304    4.303955\n')
+        file.write('   C    -2.526306    5.420853   -0.343552\n')
+        file.write('   C    -3.650208    4.836121    0.318909\n')
+        file.write('   C    -1.348404    5.822418    0.430389\n')
+        file.write('   C    -2.473114    2.025100    5.085144\n')
+        file.write('   C    -1.305328    2.906540    5.091034\n')
+        file.write('   C    -3.614731    2.355515    4.292236\n')
+        file.write('   C    -5.227081    2.890152    0.412262\n')
+        file.write('   C    -4.511902    3.913513   -0.351028\n')
+        file.write('   C    -5.065689    2.811371    1.829376\n')
+        file.write('   C    -4.473969    1.340729    3.769638\n')
+        file.write('   C    -5.207764    1.571259    2.524704\n')
+        file.write('   C     2.355865    4.580048    3.668716\n')
+        file.write('   C     2.337646    5.294418    2.483139\n')
+        file.write('   C     1.132141    5.648743    1.849197\n')
+        file.write('   C     1.144700    4.137161    4.296371\n')
+        file.write('   C    -0.104813    6.114548   -1.663193\n')
+        file.write('   C    -1.241821    5.726669   -2.410187\n')
+        file.write('   C    -0.104660    6.059494   -0.233627\n')
+        file.write('   C     1.145508    5.860428    0.431351\n')
+        file.write('   C    -5.098404    2.732391   -2.398468\n')
+        file.write('   C    -5.770630    1.772354   -1.682404\n')
+        file.write('   C    -5.773453    1.758240   -0.273453\n')
+        file.write('   C    -4.373291    3.762344   -1.768188\n')
+        file.write('   C    -5.951706    0.503830    0.396927\n')
+        file.write('   C    -3.271362    4.351624   -2.470581\n')
+        file.write('   C    -2.430618    5.266037   -1.761948\n')
+        file.write('   C    -5.043808   -1.022629    3.614944\n')
+        file.write('   C    -5.732849   -0.806152    2.446777\n')
+        file.write('   C    -5.754379    0.453690    1.815811\n')
+        file.write('   C    -4.316956    0.002090    4.253082\n')
+        file.write('   C    -3.195984   -0.361740    5.069122\n')
+        file.write('   C    -0.033951    1.142075    6.187515\n')
+        file.write('   C    -1.130646    0.315140    6.183807\n')
+        file.write('   C    -2.337402    0.678925    5.553467\n')
+        file.write('   C    -0.049652    2.404724    5.563736\n')
+        file.write('   C     1.189865    2.949722    5.091827\n')
+        file.write('   C     2.251938    5.351837   -1.759964\n')
+        file.write('   C     1.047577    5.769180   -2.409134\n')
+        file.write('   C     2.336685    5.505890   -0.342621\n')
+        file.write('   C     3.472382    4.957123    0.326355\n')
+        file.write('   C     3.474152    4.974289    1.760925\n')
+        file.write('   C     0.621948    5.167633   -3.616989\n')
+        file.write('   C    -0.792343    5.140839   -3.617905\n')
+        file.write('   C     3.520615    3.781006    3.692139\n')
+        file.write('   C     4.220825    4.028534    2.497986\n')
+        file.write('   C    -3.463272    2.588364   -4.229889\n')
+        file.write('   C    -4.684921    2.183029   -3.596329\n')
+        file.write('   C    -2.806686    3.749893   -3.721680\n')
+        file.write('   C    -1.511276    4.067322   -4.232437\n')
+        file.write('   C    -5.734314   -1.982285    0.285706\n')
+        file.write('   C    -5.752457   -1.981918    1.720123\n')
+        file.write('   C    -5.941406   -0.736618   -0.377747\n')
+        file.write('   C    -5.753876   -0.685349   -1.790924\n')
+        file.write('   C    -5.790878    0.603607   -2.419617\n')
+        file.write('   C    -5.107605    0.842407   -3.624680\n')
+        file.write('   C    -1.417923   -2.046800    5.558502\n')
+        file.write('   C    -0.695908   -0.996246    6.216537\n')
+        file.write('   C    -2.725403   -1.746445    5.073608\n')
+        file.write('   C    -3.385864   -2.719650    4.266434\n')
+        file.write('   C    -4.619186   -2.337830    3.641129\n')
+        file.write('   C    -5.051620   -2.954666    2.454163\n')
+        file.write('   C     3.522720    2.485779    4.300140\n')
+        file.write('   C     2.393753    2.116989    5.093170\n')
+        file.write('   C     2.318481    0.773270    5.570114\n')
+        file.write('   C     1.107132    0.364426    6.221573\n')
+        file.write('   C     0.709595   -0.984070    6.235458\n')
+        file.write('   C     5.129974    3.082443    0.428925\n')
+        file.write('   C     4.376846    4.073257   -0.341187\n')
+        file.write('   C     4.963776    2.996552    1.845169\n')
+        file.write('   C     5.744980    1.995193   -1.678467\n')
+        file.write('   C     4.250351    3.921448   -1.761490\n')
+        file.write('   C     5.729294    1.973923   -0.244843\n')
+        file.write('   C     5.941345    0.722855    0.416595\n')
+        file.write('   C     5.966232   -0.519470   -0.358780\n')
+        file.write('   C     5.078079   -0.844300    3.647446\n')
+        file.write('   C     5.786758   -0.601944    2.482925\n')
+        file.write('   C     5.751724    0.676376    1.834030\n')
+        file.write('   C     5.154785    1.763763    2.542740\n')
+        file.write('   C     4.423523    1.502000    3.783661\n')
+        file.write('   C     1.413986    2.038116   -5.516953\n')
+        file.write('   C     0.675598    1.002579   -6.179367\n')
+        file.write('   C    -1.462219    1.970703   -5.514633\n')
+        file.write('   C    -0.778320    3.135468   -5.032288\n')
+        file.write('   C     0.684860    3.167526   -5.032593\n')
+        file.write('   C     1.381363    4.123276   -4.230621\n')
+        file.write('   C     2.725555    1.732285   -5.033966\n')
+        file.write('   C     3.203537    0.347824   -5.041489\n')
+        file.write('   C     5.018646    2.928711   -2.397919\n')
+        file.write('   C     4.617798    2.349106   -3.589661\n')
+        file.write('   C     3.383300    2.710571   -4.223160\n')
+        file.write('   C     2.686752    3.850967   -3.717224\n')
+        file.write('   C     3.127655    4.468964   -2.465973\n')
+        file.write('   C    -3.519714   -2.490021   -4.253494\n')
+        file.write('   C    -3.516479   -3.780014   -3.626480\n')
+        file.write('   C    -4.939621   -3.004044   -1.803314\n')
+        file.write('   C    -5.149765   -1.768906   -2.501984\n')
+        file.write('   C    -4.426041   -1.508286   -3.747208\n')
+        file.write('   C    -4.321075   -0.174576   -4.250290\n')
+        file.write('   C    -2.392975   -2.123505   -5.055771\n')
+        file.write('   C    -0.708237    0.972824   -6.159943\n')
+        file.write('   C    -1.119217   -0.349274   -6.186400\n')
+        file.write('   C    -2.321716   -0.775986   -5.531937\n')
+        file.write('   C    -3.207123    0.234756   -5.046341\n')
+        file.write('   C    -2.771103    1.632217   -5.037125\n')
+        file.write('   C    -2.251862   -5.353806    1.798843\n')
+        file.write('   C    -1.036133   -5.743332    2.452774\n')
+        file.write('   C    -0.614578   -5.135178    3.623291\n')
+        file.write('   C    -1.369705   -4.124893    4.247375\n')
+        file.write('   C    -2.689285   -3.857803    3.752213\n')
+        file.write('   C    -3.136215   -4.482651    2.506287\n')
+        file.write('   C    -4.264389   -3.956329    1.804230\n')
+        file.write('   C    -2.340790   -5.517731    0.380066\n')
+        file.write('   C    -1.148987   -5.880417   -0.390305\n')
+        file.write('   C    -4.191849   -4.011932   -2.440033\n')
+        file.write('   C    -3.498093   -4.970108   -1.720016\n')
+        file.write('   C    -3.481628   -4.967545   -0.285873\n')
+        file.write('   C    -4.386749   -4.089874    0.386490\n')
+        file.write('   C    -5.129654   -3.091614   -0.384155\n')
+        file.write('   C     3.464767   -2.592697    4.275833\n')
+        file.write('   C     4.687866   -2.172668    3.656158\n')
+        file.write('   C     4.311356    0.157959    4.270813\n')
+        file.write('   C     3.200165   -0.242493    5.083893\n')
+        file.write('   C     2.770615   -1.641937    5.085556\n')
+        file.write('   C     1.473419   -1.993668    5.570892\n')
+        file.write('   C     0.770081   -5.125641    3.638992\n')
+        file.write('   C     1.507690   -4.068298    4.267624\n')
+        file.write('   C     0.781006   -3.142914    5.078156\n')
+        file.write('   C    -0.682327   -3.171524    5.069885\n')
+        file.write('   C     2.809845   -3.756897    3.762573\n')
+        file.write('   C     3.275909   -4.368195    2.515778\n')
+        file.write('   C     0.103195   -6.114563    1.706589\n')
+        file.write('   C     1.234665   -5.727722    2.449707\n')
+        file.write('   C     0.101547   -6.072708    0.276840\n')
+        file.write('   C     1.344559   -5.828430   -0.385666\n')
+        file.write('   C     1.326157   -5.606125   -1.799881\n')
+        file.write('   C     2.512909   -5.163788   -2.417984\n')
+        file.write('   C     2.429810   -5.277008    1.805969\n')
+        file.write('   C     2.521164   -5.426437    0.387115\n')
+        file.write('   C     3.628510   -4.819565   -0.287842\n')
+        file.write('   C     3.611359   -4.788651   -1.696700\n')
+        file.write('   C     5.145752   -2.780487    2.467133\n')
+        file.write('   C     5.834000   -1.796463    1.732025\n')
+        file.write('   C     4.386810   -3.802338    1.814682\n')
+        file.write('   C     4.513260   -3.925430    0.395981\n')
+        file.write('   C     5.802567   -1.777374    0.302139\n')
+        file.write('   C     5.228653   -2.902054   -0.368300\n')
+        file.write('   C     5.028061   -2.817000   -1.783356\n')
+        file.write('   C     4.279100   -3.833054   -2.410049\n')
+        file.write('   C     5.793457    0.796371   -2.422287\n')
+        file.write('   C     5.087204    1.018051   -3.619659\n')
+        file.write('   C     5.782349   -0.479965   -1.776611\n')
+        file.write('   C     5.208298   -1.581543   -2.484222\n')
+        file.write('   C     4.328796   -0.023727   -4.240540\n')
+        file.write('   C     4.473816   -1.350876   -3.729416\n')
+        file.write('   C     3.590698   -2.365600   -4.219650\n')
+        file.write('   C     3.593369   -3.617416   -3.572403\n')
+        file.write('   C     1.151215   -0.326370   -6.204605\n')
+        file.write('   C     0.026718   -1.173248   -6.209167\n')
+        file.write('   C     2.359177   -0.696350   -5.533936\n')
+        file.write('   C     2.468933   -2.035538   -5.045822\n')
+        file.write('   C    -2.365860   -4.597366   -3.652939\n')
+        file.write('   C    -2.354400   -5.342850   -2.458633\n')
+        file.write('   C    -1.128159   -5.686554   -1.807281\n')
+        file.write('   C     0.092987   -5.435425   -2.506943\n')
+        file.write('   C    -1.151764   -4.152618   -4.264587\n')
+        file.write('   C     0.080978   -4.660248   -3.748718\n')
+        file.write('   C     1.302673   -4.089142   -4.229507\n')
+        file.write('   C     2.501587   -4.439346   -3.576721\n')
+        file.write('   C    -1.194046   -2.964874   -5.060364\n')
+        file.write('   C     0.045349   -2.439285   -5.543671\n')
+        file.write('   C     1.299606   -2.916382   -5.050766\n')
+        file.write('end\n\n')
+
 def print_c240(file):
-        file.write('geometry print xyz units anstrom\n')
+        file.write('geometry print xyz units anstrom autosym\n')
         file.write('  C    -2.281342    4.587967    4.598389\n')
         file.write('  C    -2.163620    5.608307    3.610657\n')
         file.write('  C    -3.035400    5.630814    2.448380\n')
@@ -2126,7 +2349,7 @@ def print_c240(file):
         file.write('end\n\n')
 
 def print_c320(file):
-        file.write('geometry print xyz units angstrom\n')
+        file.write('geometry print xyz units angstrom autosym\n')
         file.write('  C     0.012466   -7.723877    1.539139\n')
         file.write('  C    -0.003204   -4.730667    6.298904\n')
         file.write('  C     7.361633   -2.356537    1.515137\n')
@@ -2450,7 +2673,7 @@ def print_c320(file):
         file.write('end\n\n')
 
 def print_c540(file):
-        file.write('geometry print xyz units angstrom\n')
+        file.write('geometry print xyz units angstrom autosym\n')
         file.write('  C    -6.345535   -0.819672    8.125168\n')
         file.write('  C    -5.099655   -1.005203    8.798187\n')
         file.write('  C    -4.514252   -2.309235    8.871323\n')
@@ -2576,7 +2799,7 @@ def print_c540(file):
         file.write('  C    -5.147003    1.079178   -8.825226\n')
         file.write('  C    -5.498900    2.402405   -8.405548\n')
         file.write('  C    -4.715408    3.500916   -8.831818\n')
-        file.write('  C    -0.850266   10.393082    2.046722\n')
+         autosymfile.write('  C    -0.850266   10.393082    2.046722\n')
         file.write('  C    -1.622391   10.464050    0.834335\n')
         file.write('  C    -0.988388   10.850739   -0.385803\n')
         file.write('  C    -1.493652   10.384735   -1.638046\n')
@@ -3113,6 +3336,8 @@ def print_geom(file,cluster):
     print_c60d2h(file)
   elif cluster == "c60":
     print_c60(file)
+  elif cluster == "c180":
+    print_c180(file)
   elif cluster == "c240":
     print_c240(file)
   elif cluster == "c320":
