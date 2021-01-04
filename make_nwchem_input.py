@@ -16,7 +16,7 @@ global_mem=40000 # "unlimited"
 
 # Do not store semidirect CCSD integrals on disk.
 # This is appropriate if your CPU is much faster than your filesystem.
-nodisk = False
+nodisk = True
 
 # Use OpenMP support in semidirect CCSD(T).
 # You must compile your binary with USE_OPENMP for this to be effective.
@@ -26,13 +26,13 @@ openmp = True
 # this is the directory where the RTDB and MOVECS files will be written.
 # in many cases, it is reasonable to have this path be in your home directory.
 # the filesystem on which this directory is located must be shared (e.g. NFS, GPFS, Lustre)
-permanent_dir = '/scratch/jrhammon'
+permanent_dir = '.'
 # the scratch disk is treated like local disk.
 # on almost all machines, it should be the local scratch disk on the node.
 # exceptions to this rule are Blue Gene and Cray systems, which either have
 # no local disk or the local disk (on Cray, /tmp) should not be used since
 # it (1) is small (2) is slow (3) will kill the node if it fills up.
-scratch_dir   = '/local_scratch'
+scratch_dir   = '/tmp'
 
 #################################################################
 # IT SHOULD NOT BE NECESSARY TO MODIFY ANYTHING BELOW THIS LINE #
@@ -72,6 +72,8 @@ if ( len(sys.argv) != 5 ):
 # NSF
 #------------
 def print_nsf(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  H    -1.624   1.165   0.598\n')
         file.write('  N    -1.135   2.057   0.204\n')
         file.write('  C    -1.278   3.289   0.777\n')
@@ -109,6 +111,8 @@ def print_nsf(file):
 # Rubrene (Ed Valeev)
 #------------
 def print_rubrene(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  C    0.0000000000     0.0000000000     0.7386629749\n')
         file.write('  C   -1.2483730887     0.0888707092     1.4320804162\n')
         file.write('  C   -2.4387379231     0.3562298522     0.7287080969\n')
@@ -184,6 +188,8 @@ def print_rubrene(file):
 #Monomer for phony cluster generation
 #------------
 def print_w1_xyz(file,x,y,z):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O     '+str( 0.00000000+x)+'     '+str(y)+'    '+str( 0.11726921+z)+'\n')
         file.write('  H     '+str( 0.75698224+x)+'     '+str(y)+'    '+str(-0.46907685+z)+'\n')
         file.write('  H     '+str(-0.75698224+x)+'     '+str(y)+'    '+str(-0.46907685+z)+'\n')
@@ -192,6 +198,8 @@ def print_w1_xyz(file,x,y,z):
 #Monomer *** C2v
 #------------
 def print_w1(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O      0.00000000     0.00000000     0.11726921\n')
         file.write('  H      0.75698224     0.00000000    -0.46907685\n')
         file.write('  H     -0.75698224     0.00000000    -0.46907685\n')
@@ -200,6 +208,8 @@ def print_w1(file):
 #Dimer *** Cs
 #------------
 def print_w2(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O      -0.000545       1.517541       0.000000\n')
         file.write('  H       0.094538       0.553640       0.000000\n')
         file.write('  H       0.901237       1.847958       0.000000\n')
@@ -211,6 +221,8 @@ def print_w2(file):
 #Trimer *** C1
 #-------------
 def print_w3(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  H       1.218038       0.017442      -0.022009\n')
         file.write('  O       1.295683      -0.951662      -0.092916\n')
         file.write('  H       1.961236      -1.203127       0.552608\n')
@@ -225,6 +237,8 @@ def print_w3(file):
 #Tetramer *** S4
 #---------------
 def print_w4(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O      -1.367062       1.364510       0.007273\n')
         file.write('  O      -1.364510      -1.367062      -0.007273\n')
         file.write('  O       1.364510       1.367062      -0.007273\n')
@@ -242,6 +256,8 @@ def print_w4(file):
 #Pentamer *** C1
 #---------------
 def print_w5(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O       2.289015       0.225784       0.175030\n')
         file.write('  H       1.837891      -0.638872       0.046444\n')
         file.write('  H       2.811304       0.122451       0.974687\n')
@@ -262,6 +278,8 @@ def print_w5(file):
 #Hexamer_cage *** C1
 #-------------------
 def print_w6cage(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O        .87746626     1.70810837      .47631700\n')
         file.write('  H       1.69363812     1.19357153      .28997545\n')
         file.write('  H       1.16537360     2.60804843      .65262299\n')
@@ -285,6 +303,8 @@ def print_w6cage(file):
 #Hexamer_book *** C1
 #-------------------
 def print_w6book(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O        .12690919     1.55143405      .88294964\n')
         file.write('  H        .97284357     1.51744599      .37215837\n')
         file.write('  H        .28507553     2.15693315     1.61278908\n')
@@ -308,6 +328,8 @@ def print_w6book(file):
 #Hexamer_prism *** C1
 #--------------------
 def print_w6prism(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O      -1.98809642     1.07259854     -.17008272\n')
         file.write('  H      -2.65432215     1.75406534     -.29457427\n')
         file.write('  H      -1.12410682     1.54133723     -.16808174\n')
@@ -331,6 +353,8 @@ def print_w6prism(file):
 #Hexamer_Cyclic *** S6
 #---------------------
 def print_w6cyclic(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O        .00023538     2.69029255      .14950471\n')
         file.write('  O      -2.32998012    -1.34494169      .14950441\n')
         file.write('  O       2.32998012     1.34494169     -.14950441\n')
@@ -354,6 +378,8 @@ def print_w6cyclic(file):
 #Heptamer (n=7)
 #--------------
 def print_w7(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O      -0.46306507    -2.84560143     0.34712980\n')
         file.write('  H      -0.31185448    -3.74723642     0.05234746\n')
         file.write('  H      -0.60259983    -2.31575342    -0.47038548\n')
@@ -380,6 +406,8 @@ def print_w7(file):
 #Octamer *** S4
 #--------------
 def print_w8s4(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O       1.99300294     -.06309578     1.47601417\n')
         file.write('  O      -1.99300294      .06309578     1.47601417\n')
         file.write('  O       -.06309578    -1.99300294    -1.47601417\n')
@@ -409,6 +437,8 @@ def print_w8s4(file):
 #Octamer *** D2d
 #---------------
 def print_w8d2d(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O      -1.46966769     1.46966769     1.34326600\n')
         file.write('  O       1.46966769    -1.46966769     1.34326600\n')
         file.write('  O       1.46966769     1.46966769    -1.34326600\n')
@@ -438,6 +468,8 @@ def print_w8d2d(file):
 #Nonamer (n=9)
 #-------------
 def print_w9(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O      -0.14423567    -3.30115048     0.03928978\n')
         file.write('  H      -0.32449295    -3.99879230    -0.59601201\n')
         file.write('  H      -0.88532777    -2.65077353    -0.06170448\n')
@@ -470,6 +502,8 @@ def print_w9(file):
 #Decamer (n=10)
 #--------------
 def print_w10(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O      -1.55682959     1.99913676     1.22533588\n')
         file.write('  H      -0.59298827     2.17569825     1.30499409\n')
         file.write('  H      -1.99557150     2.68355859     1.73849182\n')
@@ -505,6 +539,8 @@ def print_w10(file):
 #Endecamer (n=11), 434 Isomer
 #----------------------------
 def print_w11i434(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O      -2.08119667    -2.26673485    -0.52122025\n')
         file.write('  H      -2.87105167    -2.78737932    -0.69063304\n')
         file.write('  H      -2.37048203    -1.48052425     0.00808991\n')
@@ -543,6 +579,8 @@ def print_w11i434(file):
 #Endecamer (n=11), 4412 Isomer
 #-----------------------------
 def print_w11i4412(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O       2.51766192     0.53321759    -1.03874478\n')
         file.write('  H       1.86897322    -0.14656265    -1.30684503\n')
         file.write('  H       2.10586438     1.37269025    -1.30696563\n')
@@ -581,6 +619,8 @@ def print_w11i4412(file):
 #Endecamer (n=11), 443 Isomer
 #----------------------------
 def print_w11i443(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O       1.73475650    -0.85921782     0.23574306\n')
         file.write('  H       1.99137662    -1.80301680     0.20404462\n')
         file.write('  H       1.09679422    -0.75299981    -0.49721552\n')
@@ -619,6 +659,8 @@ def print_w11i443(file):
 #Endecamer (n=11), 515 Isomer
 #----------------------------
 def print_w11i515(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O      -2.05673439    -2.24219020    -0.59070364\n')
         file.write('  H      -2.85960922    -2.71216775    -0.83194231\n')
         file.write('  H      -2.31170553    -1.28779385    -0.48591844\n')
@@ -657,6 +699,8 @@ def print_w11i515(file):
 #Endecamer (n=11), 551 Isomer
 #----------------------------
 def print_w11i551(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O      -0.44679161    -3.11807829     0.07512616\n')
         file.write('  H      -0.47083707    -4.07016462     0.20484203\n')
         file.write('  H       0.42313859    -2.80647073     0.44156921\n')
@@ -695,6 +739,8 @@ def print_w11i551(file):
 #Dodecamer (n=12)
 #----------------
 def print_w12(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O       1.79799517    -2.87189360    -0.91374020\n')
         file.write('  O       0.96730604    -2.75911220     1.62798799\n')
         file.write('  O       1.65380168    -0.07006642    -1.01974524\n')
@@ -736,6 +782,8 @@ def print_w12(file):
 #n=13
 #----
 def print_w13(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O      -1.72139424     0.02340552    -0.51045640\n')
         file.write('  H      -1.41945833    -0.19918539     0.39792084\n')
         file.write('  H      -2.08410215     0.92470087    -0.43342046\n')
@@ -780,6 +828,8 @@ def print_w13(file):
 #n=14
 #----
 def print_w14(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O       0.16950902    -3.62933548    -1.48729544\n')
         file.write('  H       0.98770719    -3.06650603    -1.47350004\n')
         file.write('  H       0.36558718    -4.36990691    -2.06811647\n')
@@ -827,6 +877,8 @@ def print_w14(file):
 #n=15
 #----
 def print_w15(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O      -0.41037728     3.06338557    -2.19453935\n')
         file.write('  H      -1.10225722     3.15700229    -1.50322402\n')
         file.write('  H      -0.55868201     3.78135241    -2.81686194\n')
@@ -877,6 +929,8 @@ def print_w15(file):
 #n=16
 #----
 def print_w16(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O       1.41406651     1.47898306     1.34080339\n')
         file.write('  H       1.49686076     1.45044122     0.36223864\n')
         file.write('  H       1.62064251     2.40207704     1.57178605\n')
@@ -930,6 +984,8 @@ def print_w16(file):
 #n=17 (Interior)
 #---------------
 def print_w17int(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O      -0.01493103    -0.11597399     0.08504794\n')
         file.write('  H      -0.54830827    -0.79672051     0.54924004\n')
         file.write('  H       0.26142249     0.50039437     0.79799914\n')
@@ -986,6 +1042,8 @@ def print_w17int(file):
 #n=17 (Surface)
 #--------------
 def print_w17surf(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O       0.23692669    -4.65683721     0.48774215\n')
         file.write('  H      -0.51925947    -4.31137465     1.03257353\n')
         file.write('  H       0.41856682    -5.54767870     0.79964933\n')
@@ -1042,6 +1100,8 @@ def print_w17surf(file):
 #n=18 (Surface)
 #--------------
 def print_w18(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O       2.05847074    -4.03432286     1.31047808\n')
         file.write('  H       1.18052907    -4.40859785     1.49696787\n')
         file.write('  H       1.97818927    -3.09758325     1.55869811\n')
@@ -1101,6 +1161,10 @@ def print_w18(file):
 #n=19 (Interior)
 #---------------
 def print_w19(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
+        #file.write('  symmetry c1\n')
         file.write('  O      -1.78991610     1.51321269    -1.17846555\n')
         file.write('  H      -2.63160242     1.02336537    -1.09895002\n')
         file.write('  H      -1.15355746     0.93276870    -0.69523130\n')
@@ -1164,6 +1228,8 @@ def print_w19(file):
 #------------------------
 #MP2/aug-cc-pVTZ  delta E=209.28 kcal/mol
 def print_w20dode(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O       2.21363671     3.19691705     0.68721850\n')
         file.write('  O       3.65057365     0.72957220     0.88213303\n')
         file.write('  O       0.12378993     3.10718406     2.42529051\n')
@@ -1230,6 +1296,8 @@ def print_w20dode(file):
 #-----------------------
 #MP2/aug-cc-pVTZ   delta E=217.88 kcal/mol
 def print_w20fused(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O      -0.00011170     1.89124892     5.56014624\n')
         file.write('  O       2.01365707    -0.13154392     5.65472774\n')
         file.write('  O       0.13154392     2.01365707    -5.65472774\n')
@@ -1296,6 +1364,8 @@ def print_w20fused(file):
 #------------------------------------------
 #MP2/aug-cc-pVTZ  delta E=218.45 kcal/mol
 def print_w20face(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O       0.52945249    -1.32341961    -2.30158189\n')
         file.write('  H       0.57230430    -0.42717289    -2.66988776\n')
         file.write('  H       1.20070409    -1.32066723    -1.58236699\n')
@@ -1362,6 +1432,8 @@ def print_w20face(file):
 #------------------------------------------
 #MP2/aug-cc-pVTZ   delta E=220.32 kcal/mol
 def print_w20edge(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O      -1.39543275     2.31657627     1.37046631\n')
         file.write('  H      -0.92662369     1.46817589     1.52206631\n')
         file.write('  H      -2.32442996     2.12591716     1.59673517\n')
@@ -1427,6 +1499,8 @@ def print_w20edge(file):
 #n=21 (Surface)
 #--------------
 def print_w21(file):
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
         file.write('  O       2.88102880     1.35617710    -1.35936865\n')
         file.write('  H       2.58653411     2.28696609    -1.45609052\n')
         file.write('  H       3.32093709     1.29343465    -0.49116710\n')
@@ -1495,198 +1569,214 @@ def print_w21(file):
 #n=64 (Graham Fletcher)
 #--------------
 def print_w64(file):
-    file.write('   O          5.3341355614   2.2822875147   2.5569123279\n')
-    file.write('   H          6.1242446995   2.3804428156   3.0638359324\n')
-    file.write('   H          4.6164505920   2.2847341851   3.1699382266\n')
-    file.write('   O         -4.9828260569   6.5645399222  -1.4305048434\n')
-    file.write('   H         -5.7327448357   6.5144561802  -2.0014618453\n')
-    file.write('   H         -4.9037228691   5.7222103356  -1.0120529257\n')
-    file.write('   O         -3.6227640662  -2.0094049926  -3.5842035387\n')
-    file.write('   H         -3.5704397802  -2.5983493456  -2.8484826866\n')
-    file.write('   H         -4.5389553668  -1.8307904854  -3.7240921110\n')
-    file.write('   O          3.1392579772   2.4144865880  -4.5706452556\n')
-    file.write('   H          2.8184642359   3.2470917478  -4.8784414178\n')
-    file.write('   H          3.3782568871   2.5337043355  -3.6653579510\n')
-    file.write('   O         -6.0971764862  -1.1475458408  -3.2398107026\n')
-    file.write('   H         -5.8105777311  -0.6248900075  -2.5079838873\n')
-    file.write('   H         -6.8392216912  -1.6486367323  -2.9412218779\n')
-    file.write('   O         -4.7437455608   0.2406638067  -1.4425658527\n')
-    file.write('   H         -5.1439053474   0.8961107449  -0.8938036906\n')
-    file.write('   H         -4.1189937486   0.6893944851  -1.9895616530\n')
-    file.write('   O         -1.3905594340   0.6003032181   1.6523328323\n')
-    file.write('   H         -1.0076438736  -0.2571121741   1.5569757518\n')
-    file.write('   H         -1.0031627095   1.1459707668   0.9867134529\n')
-    file.write('   O         -2.9506051416  -2.0575020924   2.2939955486\n')
-    file.write('   H         -2.0162828847  -2.1275710915   2.4080600466\n')
-    file.write('   H         -3.0925674007  -1.6978547015   1.4329619109\n')
-    file.write('   O         -1.4892138488   4.9887537665  -3.2733984712\n')
-    file.write('   H         -0.5572623487   5.0949966526  -3.1682447519\n')
-    file.write('   H         -1.8837342524   5.8159639054  -3.0476652410\n')
-    file.write('   O          0.9956287780   2.8403164571  -1.8268350733\n')
-    file.write('   H          1.9163773315   2.6332485532  -1.8118872182\n')
-    file.write('   H          0.9290176036   3.7698996404  -1.9762221903\n')
-    file.write('   O         -2.5570429685   7.1678424798  -2.1041651892\n')
-    file.write('   H         -2.4346193763   8.0661032604  -2.3668788894\n')
-    file.write('   H         -3.4798399701   7.0565619038  -1.9400287177\n')
-    file.write('   O          1.9364331416   0.8087408534   1.8554569521\n')
-    file.write('   H          1.4707676717   0.8191552420   2.6763867084\n')
-    file.write('   H          1.9844358212   1.7036938663   1.5594277280\n')
-    file.write('   O         -0.8237869838   6.5422485997  -0.2172900020\n')
-    file.write('   H         -1.0773967082   5.8227010871   0.3384184997\n')
-    file.write('   H         -1.5172520267   6.6558571044  -0.8474310942\n')
-    file.write('   O         -1.1636685123   4.5053778469   1.4336238815\n')
-    file.write('   H         -0.9421345969   3.7303124294   0.9426302185\n')
-    file.write('   H         -2.0469731124   4.3864670806   1.7442871514\n')
-    file.write('   O         -0.4673817162  -0.9650433991  -1.0753723663\n')
-    file.write('   H         -1.3292040099  -0.9969136435  -0.6918034996\n')
-    file.write('   H         -0.4411881520  -0.1946487172  -1.6200597862\n')
-    file.write('   O         -2.7498569237   0.5798645061  -3.2061586058\n')
-    file.write('   H         -2.9949221552  -0.3106733578  -3.4004877068\n')
-    file.write('   H         -1.8071593424   0.6147993766  -3.2374520413\n')
-    file.write('   O         -2.9697982126  -1.3746742901  -0.2808320442\n')
-    file.write('   H         -3.6357151582  -0.7980251231  -0.6198140699\n')
-    file.write('   H         -3.0855526381  -2.2060771209  -0.7123974507\n')
-    file.write('   O          1.8148526783   0.1245102111  -4.6237838221\n')
-    file.write('   H          2.2429426431   0.9556874312  -4.7532514430\n')
-    file.write('   H          2.4707150376  -0.4704553354  -4.2970744432\n')
-    file.write('   O         -0.8261033555   2.4323079020  -0.0832596083\n')
-    file.write('   H         -1.5269390763   2.5208697741  -0.7092504559\n')
-    file.write('   H         -0.0196120782   2.4648804414  -0.5725338701\n')
-    file.write('   O         -1.3817049691  -5.0352329774  -2.4232812447\n')
-    file.write('   H         -0.7684293116  -4.3182706978  -2.4504199904\n')
-    file.write('   H         -1.4545340129  -5.3634550894  -3.3052362490\n')
-    file.write('   O          1.9215826085  -1.0921763125   0.1197749095\n')
-    file.write('   H          1.0849945087  -1.2270160735  -0.2959377849\n')
-    file.write('   H          1.7847739979  -0.4579975452   0.8053251625\n')
-    file.write('   O         -1.0018623482  -5.1120322982  -5.0837566752\n')
-    file.write('   H         -1.3933176067  -5.5582077871  -5.8176290536\n')
-    file.write('   H         -1.1664244625  -4.1908496790  -5.2071274443\n')
-    file.write('   O          3.5172957950   2.3202722362  -1.9688149465\n')
-    file.write('   H          3.9976007522   2.8596853436  -1.3611809269\n')
-    file.write('   H          3.7014504726   1.4233801808  -1.7395767524\n')
-    file.write('   O         -2.6102841193   3.0430679155  -1.9350734213\n')
-    file.write('   H         -2.8695431759   2.3270909601  -2.4927831979\n')
-    file.write('   H         -2.2135983071   3.6922269672  -2.4937426848\n')
-    file.write('   O          0.9098841921   5.4361164481  -2.0327307748\n')
-    file.write('   H          1.8021902964   5.7117315130  -1.8959659902\n')
-    file.write('   H          0.3966346177   5.8268238497  -1.3436726824\n')
-    file.write('   O         -0.1396389829   0.8002592786  -2.9481938727\n')
-    file.write('   H          0.1803973363   1.6461091339  -2.6780212784\n')
-    file.write('   H          0.4842490367   0.4598789293  -3.5693085246\n')
-    file.write('   O         -4.3860363431   4.2720576892  -0.3433107406\n')
-    file.write('   H         -3.7336474223   3.8267809447  -0.8600270757\n')
-    file.write('   H         -4.0487873372   4.3197159157   0.5369564095\n')
-    file.write('   O         -0.3551237102  -1.8527769523   2.0684277226\n')
-    file.write('   H         -0.0920198226  -2.5657488890   1.5086725835\n')
-    file.write('   H          0.2994391739  -1.7831738698   2.7448752784\n')
-    file.write('   O         -3.4203294336  -3.7199007883  -1.3994806141\n')
-    file.write('   H         -2.7432687765  -4.3024393603  -1.7046299754\n')
-    file.write('   H         -3.7574552271  -4.0910677065  -0.5998183277\n')
-    file.write('   O         -0.0519252874  -2.8278717444  -2.8209994698\n')
-    file.write('   H         -0.5501145679  -2.5647894176  -3.5782798566\n')
-    file.write('   H         -0.2137034959  -2.1819475862  -2.1520538463\n')
-    file.write('   O          3.9326972172  -0.1447916343  -1.2323267086\n')
-    file.write('   H          4.6265233238  -0.0736418998  -0.5963852781\n')
-    file.write('   H          3.1862113709  -0.5043840273  -0.7802972336\n')
-    file.write('   O          3.7401140949  -0.5820784924   3.2346232262\n')
-    file.write('   H          3.4109667678   0.0010845580   2.5694455449\n')
-    file.write('   H          4.4887698990  -1.0213950985   2.8639564478\n')
-    file.write('   O          1.6035214145   7.5332271460   0.5500656116\n')
-    file.write('   H          0.7804662926   7.4203968594   0.1020387745\n')
-    file.write('   H          1.6492220601   8.4396260189   0.8093550024\n')
-    file.write('   O          4.4003916363   3.8226598525   0.0069188393\n')
-    file.write('   H          5.2612591295   3.6986968994   0.3735505340\n')
-    file.write('   H          3.7823167909   3.6072717418   0.6869702355\n')
-    file.write('   O         -3.5834193506   3.9852493421   2.1840448160\n')
-    file.write('   H         -3.7291009199   3.0645550013   2.3322921269\n')
-    file.write('   H         -3.7812015565   4.4252777695   2.9953004084\n')
-    file.write('   O          3.4936095435  -3.1058523194   0.9291805120\n')
-    file.write('   H          3.3712294837  -3.7693386248   0.2691142293\n')
-    file.write('   H          2.9197575006  -2.3908543652   0.7047919818\n')
-    file.write('   O         -3.7164915636  -0.3806762095   4.1363149244\n')
-    file.write('   H         -4.3366135314  -0.6984719984   4.7729726312\n')
-    file.write('   H         -3.5133359239  -1.1073635653   3.5692772474\n')
-    file.write('   O         -3.8937397475  -4.4355904336   1.1000366022\n')
-    file.write('   H         -3.6344581178  -3.7269260008   1.6669988693\n')
-    file.write('   H         -3.4115082598  -5.1971956457   1.3798378660\n')
-    file.write('   O          5.7005647273   0.3190826622   0.6496630329\n')
-    file.write('   H          5.5135869586   0.9928593935   1.2836525316\n')
-    file.write('   H          5.8969239381  -0.4650189811   1.1370090366\n')
-    file.write('   O          0.3840099694  -4.1137118300   0.7819986172\n')
-    file.write('   H          1.0860882843  -4.1283857388   0.1513250327\n')
-    file.write('   H         -0.1978841279  -4.8218905579   0.5566974790\n')
-    file.write('   O         -3.8748255878   1.3976416485   2.1437263758\n')
-    file.write('   H         -3.0861576019   1.0303095317   1.7777367885\n')
-    file.write('   H         -4.0796022953   0.8893530343   2.9122233757\n')
-    file.write('   O          5.6156770347  -2.0418229061   1.9133661087\n')
-    file.write('   H          6.2490773326  -2.6191226940   2.3088499537\n')
-    file.write('   H          4.9780399179  -2.5908451139   1.4857307772\n')
-    file.write('   O         -0.6231302264  -6.3802894242  -0.3460579667\n')
-    file.write('   H          0.1618029347  -6.8320433206  -0.6119090598\n')
-    file.write('   H         -1.0156082384  -6.0333732407  -1.1312258633\n')
-    file.write('   O         -3.3285808216   4.9913954097   4.6233326842\n')
-    file.write('   H         -2.4414687619   4.6895031048   4.7363445590\n')
-    file.write('   H         -3.3912517639   5.8217440407   5.0677108542\n')
-    file.write('   O         -1.4311111886   1.2081374480   4.1811948741\n')
-    file.write('   H         -1.4049614958   1.0234543269   3.2559452902\n')
-    file.write('   H         -2.1760032331   0.7446962855   4.5293853176\n')
-    file.write('   O          3.2736711954   6.0672313090  -1.0775623608\n')
-    file.write('   H          3.0040606059   6.6267462176  -0.3668362173\n')
-    file.write('   H          3.7758538289   5.3655843574  -0.6949625541\n')
-    file.write('   O          2.3742924087  -3.5008642086  -3.2237852560\n')
-    file.write('   H          2.9884781739  -2.8117693661  -3.4207690065\n')
-    file.write('   H          1.5253394643  -3.0948867370  -3.1507123820\n')
-    file.write('   O         -0.9668503726   3.7985207601   4.3145144878\n')
-    file.write('   H         -1.1550049065   2.8768954373   4.3925086527\n')
-    file.write('   H         -0.8388155195   3.9724514381   3.3956926064\n')
-    file.write('   O          2.4466289510  -4.6602701167  -0.8846294398\n')
-    file.write('   H          2.3411313009  -5.5896999919  -1.0107595591\n')
-    file.write('   H          2.4976467404  -4.2739068426  -1.7442799849\n')
-    file.write('   O          2.5305065060   3.3990198177   1.7380162868\n')
-    file.write('   H          2.8139586713   3.1626575111   2.6067315359\n')
-    file.write('   H          1.9901367993   4.1675619150   1.8286919663\n')
-    file.write('   O          2.0604372566  -4.3421927104   2.9544881392\n')
-    file.write('   H          1.3133508954  -4.4899706086   2.3969021675\n')
-    file.write('   H          2.7485484168  -4.0061983788   2.4026826530\n')
-    file.write('   O         -1.4732015151  -2.5280373896  -4.9717166508\n')
-    file.write('   H         -1.1453908577  -1.8601111236  -5.5524860802\n')
-    file.write('   H         -2.3506759588  -2.2741409052  -4.7341169248\n')
-    file.write('   O          1.1220256376   5.5421086354   2.2765980287\n')
-    file.write('   H          0.2228618163   5.3651637598   2.0506038086\n')
-    file.write('   H          1.3717300800   6.3212767322   1.8060417384\n')
-    file.write('   O          3.1317154301   2.5492758922   4.1628199793\n')
-    file.write('   H          2.7683876916   3.2785666929   4.6392717988\n')
-    file.write('   H          2.6043521159   1.7961017823   4.3761158982\n')
-    file.write('   O          1.1372281976   0.6885852150   4.3813162371\n')
-    file.write('   H          1.2494192006  -0.2236936306   4.5958831050\n')
-    file.write('   H          0.2369780196   0.9023734278   4.5676564399\n')
-    file.write('   O         -0.1016378554  -0.6926890421  -6.2527824769\n')
-    file.write('   H          0.1702908401  -0.6992191681  -7.1566024789\n')
-    file.write('   H          0.6406347495  -0.4004969649  -5.7482692223\n')
-    file.write('   O         -2.3285161725  -6.5511603803   1.6473226256\n')
-    file.write('   H         -1.6896078368  -6.6733975054   0.9634127793\n')
-    file.write('   H         -2.6495824264  -7.4090128354   1.8751033974\n')
-    file.write('   O          1.4527752549  -5.8880275983  -4.0675040894\n')
-    file.write('   H          0.6343187338  -5.6701343479  -4.4840733017\n')
-    file.write('   H          1.9234004643  -5.0778176061  -3.9537054302\n')
-    file.write('   O          1.5983976737  -1.9057788553   3.9163341508\n')
-    file.write('   H          2.4379449939  -1.5554994781   3.6646535812\n')
-    file.write('   H          1.6912564086  -2.8448470595   3.9364989058\n')
-    file.write('   O          1.6232603136   4.6427291861   4.8129279939\n')
-    file.write('   H          0.7443920087   4.3339913767   4.9650789773\n')
-    file.write('   H          1.5954824854   5.1634302425   4.0261769175\n')
-    file.write('   O          1.6169447310  -7.0971132635  -1.7472363134\n')
-    file.write('   H          1.4837903359  -6.7909864629  -2.6300923283\n')
-    file.write('   H          2.0775965422  -7.9184244668  -1.8114723640\n')
-    file.write('   O          3.8562197281  -1.2815791583  -3.5491264929\n')
-    file.write('   H          4.0398199763  -0.8915958844  -2.7094346155\n')
-    file.write('   H          4.6633269012  -1.2650987669  -4.0381917871\n')
-    file.write('   O         -5.6995689859   1.9293266748   0.2651776192\n')
-    file.write('   H         -5.5321355459   2.8335349273   0.0524526011\n')
-    file.write('   H         -5.1861533360   1.7315023768   1.0320859394\n')
-    file.write('   O         -0.8806597750   9.1048813981   0.6911891481\n')
-    file.write('   H         -1.5189059755   9.4074827100   1.3172503972\n')
-    file.write('   H         -1.0704878524   8.1947118324   0.5286003513\n')
+        file.write('geometry units angstrom noautoz noprint\n')
+        #file.write('  symmetry c1\n')
+        file.write('   O          5.3341355614   2.2822875147   2.5569123279\n')
+        file.write('   H          6.1242446995   2.3804428156   3.0638359324\n')
+        file.write('   H          4.6164505920   2.2847341851   3.1699382266\n')
+        file.write('   O         -4.9828260569   6.5645399222  -1.4305048434\n')
+        file.write('   H         -5.7327448357   6.5144561802  -2.0014618453\n')
+        file.write('   H         -4.9037228691   5.7222103356  -1.0120529257\n')
+        file.write('   O         -3.6227640662  -2.0094049926  -3.5842035387\n')
+        file.write('   H         -3.5704397802  -2.5983493456  -2.8484826866\n')
+        file.write('   H         -4.5389553668  -1.8307904854  -3.7240921110\n')
+        file.write('   O          3.1392579772   2.4144865880  -4.5706452556\n')
+        file.write('   H          2.8184642359   3.2470917478  -4.8784414178\n')
+        file.write('   H          3.3782568871   2.5337043355  -3.6653579510\n')
+        file.write('   O         -6.0971764862  -1.1475458408  -3.2398107026\n')
+        file.write('   H         -5.8105777311  -0.6248900075  -2.5079838873\n')
+        file.write('   H         -6.8392216912  -1.6486367323  -2.9412218779\n')
+        file.write('   O         -4.7437455608   0.2406638067  -1.4425658527\n')
+        file.write('   H         -5.1439053474   0.8961107449  -0.8938036906\n')
+        file.write('   H         -4.1189937486   0.6893944851  -1.9895616530\n')
+        file.write('   O         -1.3905594340   0.6003032181   1.6523328323\n')
+        file.write('   H         -1.0076438736  -0.2571121741   1.5569757518\n')
+        file.write('   H         -1.0031627095   1.1459707668   0.9867134529\n')
+        file.write('   O         -2.9506051416  -2.0575020924   2.2939955486\n')
+        file.write('   H         -2.0162828847  -2.1275710915   2.4080600466\n')
+        file.write('   H         -3.0925674007  -1.6978547015   1.4329619109\n')
+        file.write('   O         -1.4892138488   4.9887537665  -3.2733984712\n')
+        file.write('   H         -0.5572623487   5.0949966526  -3.1682447519\n')
+        file.write('   H         -1.8837342524   5.8159639054  -3.0476652410\n')
+        file.write('   O          0.9956287780   2.8403164571  -1.8268350733\n')
+        file.write('   H          1.9163773315   2.6332485532  -1.8118872182\n')
+        file.write('   H          0.9290176036   3.7698996404  -1.9762221903\n')
+        file.write('   O         -2.5570429685   7.1678424798  -2.1041651892\n')
+        file.write('   H         -2.4346193763   8.0661032604  -2.3668788894\n')
+        file.write('   H         -3.4798399701   7.0565619038  -1.9400287177\n')
+        file.write('   O          1.9364331416   0.8087408534   1.8554569521\n')
+        file.write('   H          1.4707676717   0.8191552420   2.6763867084\n')
+        file.write('   H          1.9844358212   1.7036938663   1.5594277280\n')
+        file.write('   O         -0.8237869838   6.5422485997  -0.2172900020\n')
+        file.write('   H         -1.0773967082   5.8227010871   0.3384184997\n')
+        file.write('   H         -1.5172520267   6.6558571044  -0.8474310942\n')
+        file.write('   O         -1.1636685123   4.5053778469   1.4336238815\n')
+        file.write('   H         -0.9421345969   3.7303124294   0.9426302185\n')
+        file.write('   H         -2.0469731124   4.3864670806   1.7442871514\n')
+        file.write('   O         -0.4673817162  -0.9650433991  -1.0753723663\n')
+        file.write('   H         -1.3292040099  -0.9969136435  -0.6918034996\n')
+        file.write('   H         -0.4411881520  -0.1946487172  -1.6200597862\n')
+        file.write('   O         -2.7498569237   0.5798645061  -3.2061586058\n')
+        file.write('   H         -2.9949221552  -0.3106733578  -3.4004877068\n')
+        file.write('   H         -1.8071593424   0.6147993766  -3.2374520413\n')
+        file.write('   O         -2.9697982126  -1.3746742901  -0.2808320442\n')
+        file.write('   H         -3.6357151582  -0.7980251231  -0.6198140699\n')
+        file.write('   H         -3.0855526381  -2.2060771209  -0.7123974507\n')
+        file.write('   O          1.8148526783   0.1245102111  -4.6237838221\n')
+        file.write('   H          2.2429426431   0.9556874312  -4.7532514430\n')
+        file.write('   H          2.4707150376  -0.4704553354  -4.2970744432\n')
+        file.write('   O         -0.8261033555   2.4323079020  -0.0832596083\n')
+        file.write('   H         -1.5269390763   2.5208697741  -0.7092504559\n')
+        file.write('   H         -0.0196120782   2.4648804414  -0.5725338701\n')
+        file.write('   O         -1.3817049691  -5.0352329774  -2.4232812447\n')
+        file.write('   H         -0.7684293116  -4.3182706978  -2.4504199904\n')
+        file.write('   H         -1.4545340129  -5.3634550894  -3.3052362490\n')
+        file.write('   O          1.9215826085  -1.0921763125   0.1197749095\n')
+        file.write('   H          1.0849945087  -1.2270160735  -0.2959377849\n')
+        file.write('   H          1.7847739979  -0.4579975452   0.8053251625\n')
+        file.write('   O         -1.0018623482  -5.1120322982  -5.0837566752\n')
+        file.write('   H         -1.3933176067  -5.5582077871  -5.8176290536\n')
+        file.write('   H         -1.1664244625  -4.1908496790  -5.2071274443\n')
+        file.write('   O          3.5172957950   2.3202722362  -1.9688149465\n')
+        file.write('   H          3.9976007522   2.8596853436  -1.3611809269\n')
+        file.write('   H          3.7014504726   1.4233801808  -1.7395767524\n')
+        file.write('   O         -2.6102841193   3.0430679155  -1.9350734213\n')
+        file.write('   H         -2.8695431759   2.3270909601  -2.4927831979\n')
+        file.write('   H         -2.2135983071   3.6922269672  -2.4937426848\n')
+        file.write('   O          0.9098841921   5.4361164481  -2.0327307748\n')
+        file.write('   H          1.8021902964   5.7117315130  -1.8959659902\n')
+        file.write('   H          0.3966346177   5.8268238497  -1.3436726824\n')
+        file.write('   O         -0.1396389829   0.8002592786  -2.9481938727\n')
+        file.write('   H          0.1803973363   1.6461091339  -2.6780212784\n')
+        file.write('   H          0.4842490367   0.4598789293  -3.5693085246\n')
+        file.write('   O         -4.3860363431   4.2720576892  -0.3433107406\n')
+        file.write('   H         -3.7336474223   3.8267809447  -0.8600270757\n')
+        file.write('   H         -4.0487873372   4.3197159157   0.5369564095\n')
+        file.write('   O         -0.3551237102  -1.8527769523   2.0684277226\n')
+        file.write('   H         -0.0920198226  -2.5657488890   1.5086725835\n')
+        file.write('   H          0.2994391739  -1.7831738698   2.7448752784\n')
+        file.write('   O         -3.4203294336  -3.7199007883  -1.3994806141\n')
+        file.write('   H         -2.7432687765  -4.3024393603  -1.7046299754\n')
+        file.write('   H         -3.7574552271  -4.0910677065  -0.5998183277\n')
+        file.write('   O         -0.0519252874  -2.8278717444  -2.8209994698\n')
+        file.write('   H         -0.5501145679  -2.5647894176  -3.5782798566\n')
+        file.write('   H         -0.2137034959  -2.1819475862  -2.1520538463\n')
+        file.write('   O          3.9326972172  -0.1447916343  -1.2323267086\n')
+        file.write('   H          4.6265233238  -0.0736418998  -0.5963852781\n')
+        file.write('   H          3.1862113709  -0.5043840273  -0.7802972336\n')
+        file.write('   O          3.7401140949  -0.5820784924   3.2346232262\n')
+        file.write('   H          3.4109667678   0.0010845580   2.5694455449\n')
+        file.write('   H          4.4887698990  -1.0213950985   2.8639564478\n')
+        file.write('   O          1.6035214145   7.5332271460   0.5500656116\n')
+        file.write('   H          0.7804662926   7.4203968594   0.1020387745\n')
+        file.write('   H          1.6492220601   8.4396260189   0.8093550024\n')
+        file.write('   O          4.4003916363   3.8226598525   0.0069188393\n')
+        file.write('   H          5.2612591295   3.6986968994   0.3735505340\n')
+        file.write('   H          3.7823167909   3.6072717418   0.6869702355\n')
+        file.write('   O         -3.5834193506   3.9852493421   2.1840448160\n')
+        file.write('   H         -3.7291009199   3.0645550013   2.3322921269\n')
+        file.write('   H         -3.7812015565   4.4252777695   2.9953004084\n')
+        file.write('   O          3.4936095435  -3.1058523194   0.9291805120\n')
+        file.write('   H          3.3712294837  -3.7693386248   0.2691142293\n')
+        file.write('   H          2.9197575006  -2.3908543652   0.7047919818\n')
+        file.write('   O         -3.7164915636  -0.3806762095   4.1363149244\n')
+        file.write('   H         -4.3366135314  -0.6984719984   4.7729726312\n')
+        file.write('   H         -3.5133359239  -1.1073635653   3.5692772474\n')
+        file.write('   O         -3.8937397475  -4.4355904336   1.1000366022\n')
+        file.write('   H         -3.6344581178  -3.7269260008   1.6669988693\n')
+        file.write('   H         -3.4115082598  -5.1971956457   1.3798378660\n')
+        file.write('   O          5.7005647273   0.3190826622   0.6496630329\n')
+        file.write('   H          5.5135869586   0.9928593935   1.2836525316\n')
+        file.write('   H          5.8969239381  -0.4650189811   1.1370090366\n')
+        file.write('   O          0.3840099694  -4.1137118300   0.7819986172\n')
+        file.write('   H          1.0860882843  -4.1283857388   0.1513250327\n')
+        file.write('   H         -0.1978841279  -4.8218905579   0.5566974790\n')
+        file.write('   O         -3.8748255878   1.3976416485   2.1437263758\n')
+        file.write('   H         -3.0861576019   1.0303095317   1.7777367885\n')
+        file.write('   H         -4.0796022953   0.8893530343   2.9122233757\n')
+        file.write('   O          5.6156770347  -2.0418229061   1.9133661087\n')
+        file.write('   H          6.2490773326  -2.6191226940   2.3088499537\n')
+        file.write('   H          4.9780399179  -2.5908451139   1.4857307772\n')
+        file.write('   O         -0.6231302264  -6.3802894242  -0.3460579667\n')
+        file.write('   H          0.1618029347  -6.8320433206  -0.6119090598\n')
+        file.write('   H         -1.0156082384  -6.0333732407  -1.1312258633\n')
+        file.write('   O         -3.3285808216   4.9913954097   4.6233326842\n')
+        file.write('   H         -2.4414687619   4.6895031048   4.7363445590\n')
+        file.write('   H         -3.3912517639   5.8217440407   5.0677108542\n')
+        file.write('   O         -1.4311111886   1.2081374480   4.1811948741\n')
+        file.write('   H         -1.4049614958   1.0234543269   3.2559452902\n')
+        file.write('   H         -2.1760032331   0.7446962855   4.5293853176\n')
+        file.write('   O          3.2736711954   6.0672313090  -1.0775623608\n')
+        file.write('   H          3.0040606059   6.6267462176  -0.3668362173\n')
+        file.write('   H          3.7758538289   5.3655843574  -0.6949625541\n')
+        file.write('   O          2.3742924087  -3.5008642086  -3.2237852560\n')
+        file.write('   H          2.9884781739  -2.8117693661  -3.4207690065\n')
+        file.write('   H          1.5253394643  -3.0948867370  -3.1507123820\n')
+        file.write('   O         -0.9668503726   3.7985207601   4.3145144878\n')
+        file.write('   H         -1.1550049065   2.8768954373   4.3925086527\n')
+        file.write('   H         -0.8388155195   3.9724514381   3.3956926064\n')
+        file.write('   O          2.4466289510  -4.6602701167  -0.8846294398\n')
+        file.write('   H          2.3411313009  -5.5896999919  -1.0107595591\n')
+        file.write('   H          2.4976467404  -4.2739068426  -1.7442799849\n')
+        file.write('   O          2.5305065060   3.3990198177   1.7380162868\n')
+        file.write('   H          2.8139586713   3.1626575111   2.6067315359\n')
+        file.write('   H          1.9901367993   4.1675619150   1.8286919663\n')
+        file.write('   O          2.0604372566  -4.3421927104   2.9544881392\n')
+        file.write('   H          1.3133508954  -4.4899706086   2.3969021675\n')
+        file.write('   H          2.7485484168  -4.0061983788   2.4026826530\n')
+        file.write('   O         -1.4732015151  -2.5280373896  -4.9717166508\n')
+        file.write('   H         -1.1453908577  -1.8601111236  -5.5524860802\n')
+        file.write('   H         -2.3506759588  -2.2741409052  -4.7341169248\n')
+        file.write('   O          1.1220256376   5.5421086354   2.2765980287\n')
+        file.write('   H          0.2228618163   5.3651637598   2.0506038086\n')
+        file.write('   H          1.3717300800   6.3212767322   1.8060417384\n')
+        file.write('   O          3.1317154301   2.5492758922   4.1628199793\n')
+        file.write('   H          2.7683876916   3.2785666929   4.6392717988\n')
+        file.write('   H          2.6043521159   1.7961017823   4.3761158982\n')
+        file.write('   O          1.1372281976   0.6885852150   4.3813162371\n')
+        file.write('   H          1.2494192006  -0.2236936306   4.5958831050\n')
+        file.write('   H          0.2369780196   0.9023734278   4.5676564399\n')
+        file.write('   O         -0.1016378554  -0.6926890421  -6.2527824769\n')
+        file.write('   H          0.1702908401  -0.6992191681  -7.1566024789\n')
+        file.write('   H          0.6406347495  -0.4004969649  -5.7482692223\n')
+        file.write('   O         -2.3285161725  -6.5511603803   1.6473226256\n')
+        file.write('   H         -1.6896078368  -6.6733975054   0.9634127793\n')
+        file.write('   H         -2.6495824264  -7.4090128354   1.8751033974\n')
+        file.write('   O          1.4527752549  -5.8880275983  -4.0675040894\n')
+        file.write('   H          0.6343187338  -5.6701343479  -4.4840733017\n')
+        file.write('   H          1.9234004643  -5.0778176061  -3.9537054302\n')
+        file.write('   O          1.5983976737  -1.9057788553   3.9163341508\n')
+        file.write('   H          2.4379449939  -1.5554994781   3.6646535812\n')
+        file.write('   H          1.6912564086  -2.8448470595   3.9364989058\n')
+        file.write('   O          1.6232603136   4.6427291861   4.8129279939\n')
+        file.write('   H          0.7443920087   4.3339913767   4.9650789773\n')
+        file.write('   H          1.5954824854   5.1634302425   4.0261769175\n')
+        file.write('   O          1.6169447310  -7.0971132635  -1.7472363134\n')
+        file.write('   H          1.4837903359  -6.7909864629  -2.6300923283\n')
+        file.write('   H          2.0775965422  -7.9184244668  -1.8114723640\n')
+        file.write('   O          3.8562197281  -1.2815791583  -3.5491264929\n')
+        file.write('   H          4.0398199763  -0.8915958844  -2.7094346155\n')
+        file.write('   H          4.6633269012  -1.2650987669  -4.0381917871\n')
+        file.write('   O         -5.6995689859   1.9293266748   0.2651776192\n')
+        file.write('   H         -5.5321355459   2.8335349273   0.0524526011\n')
+        file.write('   H         -5.1861533360   1.7315023768   1.0320859394\n')
+        file.write('   O         -0.8806597750   9.1048813981   0.6911891481\n')
+        file.write('   H         -1.5189059755   9.4074827100   1.3172503972\n')
+        file.write('   H         -1.0704878524   8.1947118324   0.5286003513\n')
+
+def print_c60(file):
+    file.write('geometry print xyz units bohr\n')
+    #file.write('  symmetry c1\n')
+    file.write('symmetry d2h\n')
+    file.write('C      0.0000000000        6.5776597000        1.3147448000\n')
+    file.write('C      2.2251790000        5.7277170000        2.6899811000\n')
+    file.write('C      1.3752363000        4.3524807000        4.9151601000\n')
+    file.write('C      4.3524807000        4.9151601000        1.3752363000\n')
+    file.write('C      2.6899811000        2.2251790000        5.7277170000\n')
+    file.write('C      4.9151601000        1.3752363000        4.3524807000\n')
+    file.write('C      5.7277170000        2.6899811000        2.2251790000\n')
+    file.write('C      6.5776597000        1.3147448000        0.0000000000\n')
+    file.write('C      1.3147448000        0.0000000000        6.5776597000\n')
 
 ##############################################
 # Citations for the water cluster geometries #
@@ -1787,12 +1877,14 @@ def print_citations(cluster):
 ###############################################################################
 
 def print_geom(file,cluster):
-  file.write('geometry units angstrom noautoz noprint\n')
+  #file.write('geometry units angstrom noautoz noprint\n')
   #file.write('  symmetry c1\n')
   if cluster == "rubrene":
     print_rubrene(file)
   elif cluster == "nsf":
     print_nsf(file)
+  elif cluster == "c60":
+    print_c60(file)
   elif cluster == "w1":
     print_w1(file)
   elif cluster == "w2":
