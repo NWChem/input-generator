@@ -44,6 +44,7 @@ if ( len(sys.argv) != 5 ):
         print("<cluster> can be: w1 w2 w3 w4 w5 w6cage w6book w6prism w6cyclic w7 w8s4 w8d2d w9")
         print("                  w10 w11i434 w11i4412 w11i443 w11i515 w11i551 w12 w13 w14 w15 w16")
         print("                  w17int w17surf w18 w19 w20dode w20fused w20face w20edge w21")
+        print("                  c60d2h c60 c240 c320 c540")
         print("                  rubrene or wN for any N not already listed.")
         print("")
         print("<method> can be pbe0, b3lyp or other supported functional represented by a single string")
@@ -3350,7 +3351,7 @@ def print_dft(file,functional,cluster,basis,readmos):
         #file.write('  convergence energy 1e-9 density 1e-7 gradient 1e-7 lshift 0.2 rabuck 20\n')
         #file.write('  convergence energy 1e-7 density 1e-5 gradient 1e-5 lshift 0.2\n')
         #file.write('  convergence energy 1e-7 density 1e-5 gradient 1e-5\n')
-        file.write('  convergence energy 1e-9 density 1e-7 gradient 1e-7\n')
+        #file.write('  convergence energy 1e-9 density 1e-7 gradient 1e-7\n')
         file.write('  iterations 100\n')
         if readmos:
             file.write('  vectors input '+cluster+'_scf_'+basis+'.movecs\n')
