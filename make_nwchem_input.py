@@ -10,9 +10,9 @@ import sys
 
 # this is probably reasonable on a system with 4 GB per MPI process
 # (assuming running 1 MPI per core, which is not always optimal)
-stack_mem=8000
+stack_mem=2000
 heap_mem=100
-global_mem=40000 # "unlimited"
+global_mem=2000
 
 # Do not store semidirect CCSD integrals on disk.
 # This is appropriate if your CPU is much faster than your filesystem.
@@ -20,7 +20,7 @@ nodisk = True
 
 # Use OpenMP support in semidirect CCSD(T).
 # You must compile your binary with USE_OPENMP for this to be effective.
-openmp = True
+openmp = False
 
 # these are the paths where you job will write files
 # this is the directory where the RTDB and MOVECS files will be written.
