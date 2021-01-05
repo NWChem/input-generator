@@ -2799,7 +2799,7 @@ def print_c540(file):
         file.write('  C    -5.147003    1.079178   -8.825226\n')
         file.write('  C    -5.498900    2.402405   -8.405548\n')
         file.write('  C    -4.715408    3.500916   -8.831818\n')
-         autosymfile.write('  C    -0.850266   10.393082    2.046722\n')
+        file.write('  C    -0.850266   10.393082    2.046722\n')
         file.write('  C    -1.622391   10.464050    0.834335\n')
         file.write('  C    -0.988388   10.850739   -0.385803\n')
         file.write('  C    -1.493652   10.384735   -1.638046\n')
@@ -3443,7 +3443,11 @@ def print_header(file,name):
 
 
 def print_basis(file,basis,method):
-        if ( "6-31" in basis ):
+        if ( "sto" in basis ):
+            file.write('basis "ao basis" cartesian noprint\n')
+            file.write('  * library '+basis+'\n')
+            file.write('end\n\n')
+        elif ( "6-31" in basis ):
             basisname = basis.replace("s","*").replace("p","+")
             file.write('basis "ao basis" cartesian noprint\n')
             file.write('  * library '+basisname+'\n')
@@ -3601,6 +3605,7 @@ def print_scf(file,method,cluster,basis,guessmos):
         file.write('  singlet\n')
         file.write('  rhf\n')
         file.write('  thresh 1e-7\n')
+        file.write('  maxiter 100\n')
         #file.write('  tol2e 1e-14\n')
         if guessmos:
             file.write('  vectors input atomic output '+cluster+'_scf_'+basis+'.movecs\n')

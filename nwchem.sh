@@ -11,7 +11,10 @@ export OMP_NUM_THREADS=1
 source ~/setup-mpipr.sh
 
 export NWCHEM=${NWCHEM_TOP}/bin/${NWCHEM_TARGET}/nwchem
-export PREFIX=c240_b3lyp_cc-pvdz_energy
+#export PREFIX=c240_b3lyp_cc-pvdz_energy
+#export PREFIX=c240_d-scf_6-31G_optimize
+#export PREFIX=c60_b3lyp_cc-pvtz_optimize
+export PREFIX=c240_sd-scf_sto-6g_optimize
 
 # https://github.com/nwchemgit/nwchem/issues/100
 #export COMEX_ENABLE_GET_DATATYPE=0
@@ -24,4 +27,4 @@ env
 /home/files/slurm-job-nodes.sh > myhostfile.${SLURM_JOB_ID}
 
 mpirun -hostfile myhostfile.${SLURM_JOB_ID} -ppn ${PPN} \
-       $NWCHEM $PREFIX.nw | tee ${PREFIX.$SLURM_JOB_ID}.${SLURM_JOB_PARTITION}.${SLURM_JOB_NUM_NODES}.log
+       $NWCHEM $PREFIX.nw | tee ${PREFIX}.${SLURM_JOB_ID}.${SLURM_JOB_PARTITION}.${SLURM_JOB_NUM_NODES}.log
