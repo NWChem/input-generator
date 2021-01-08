@@ -47,7 +47,7 @@ if ( len(sys.argv) != 5 ):
         print("<cluster> can be: w1 w2 w3 w4 w5 w6cage w6book w6prism w6cyclic w7 w8s4 w8d2d w9")
         print("                  w10 w11i434 w11i4412 w11i443 w11i515 w11i551 w12 w13 w14 w15 w16")
         print("                  w17int w17surf w18 w19 w20dode w20fused w20face w20edge w21")
-        print("                  c60d2h c60 c240 c320 c540")
+        print("                  c60d2h c60 c180 c240 c320 c540 c20 c24 c26 c28 c30 c32 c36 c60 c76 c80")
         print("                  rubrene or wN for any N not already listed.")
         print("")
         print("<method> can be pbe0, b3lyp or other supported functional represented by a single string")
