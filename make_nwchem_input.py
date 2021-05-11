@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 
@@ -36,6 +36,9 @@ scratch_dir   = '/tmp'
 
 # disable symmetry in all geometries
 nosymmetry = False
+
+# force integral code to use SIMINT only
+simint = True
 
 #################################################################
 # IT SHOULD NOT BE NECESSARY TO MODIFY ANYTHING BELOW THIS LINE #
@@ -4172,6 +4175,12 @@ file       = open(prefix+'.nw','w')
 print_header(file,prefix)
 print_geom(file,cluster)
 print_basis(file,basis,method)
+
+if (simint):
+    file.write('set int:cando_sp F\n')
+    file.write('set int:cando_nw F\n')
+    file.write('set int:cando_txs F\n')
+    file.write('set int:cando_hnd F\n\n')
 
 if ( "opt" in task or "freq" in task ):
     print_driver(file)
