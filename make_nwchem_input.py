@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 
@@ -4152,6 +4152,7 @@ def print_tce(file,method):
             file.write('  tilesize 32\n')
         file.write('end\n\n')
         file.write('set tce:nts T\n\n')
+        file.write('set tce:xmem 1000\n\n')
 
 def print_driver(file):
         file.write('driver\n')
