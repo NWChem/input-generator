@@ -21,6 +21,7 @@ nodisk = True
 # Use OpenMP support in semidirect CCSD(T).
 # You must compile your binary with USE_OPENMP for this to be effective.
 openmp = False
+openacc = True
 
 # these are the paths where you job will write files
 # this is the directory where the RTDB and MOVECS files will be written.
@@ -32,7 +33,7 @@ permanent_dir = '.'
 # exceptions to this rule are Blue Gene and Cray systems, which either have
 # no local disk or the local disk (on Cray, /tmp) should not be used since
 # it (1) is small (2) is slow (3) will kill the node if it fills up.
-scratch_dir   = '/tmp'
+scratch_dir   = '/local/jehammond/scratch'
 
 # disable symmetry in all geometries
 nosymmetry = False
@@ -4129,7 +4130,10 @@ def print_ccsd(file):
         file.write('#set ccsdt:memlimit 8000\n\n')
         file.write('#set ccsd:converged T\n\n')
         # Set to true to use OpenMP
-        if openmp:
+        if openacc:
+            file.write('set ccsd:use_ccsd_omp T\n')
+            file.write('set ccsd:use_trpdrv_openacc T\n\n')
+        elif openmp:
             file.write('set ccsd:use_ccsd_omp T\n')
             file.write('set ccsd:use_trpdrv_omp T\n\n')
         else:
