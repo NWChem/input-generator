@@ -16,12 +16,12 @@ global_mem=2000
 
 # Do not store semidirect CCSD integrals on disk.
 # This is appropriate if your CPU is much faster than your filesystem.
-nodisk = True
+nodisk = False
 
 # Use OpenMP support in semidirect CCSD(T).
 # You must compile your binary with USE_OPENMP for this to be effective.
 openmp = False
-openacc = True
+openacc = False
 
 # these are the paths where you job will write files
 # this is the directory where the RTDB and MOVECS files will be written.
@@ -33,13 +33,13 @@ permanent_dir = '.'
 # exceptions to this rule are Blue Gene and Cray systems, which either have
 # no local disk or the local disk (on Cray, /tmp) should not be used since
 # it (1) is small (2) is slow (3) will kill the node if it fills up.
-scratch_dir   = '/local/jehammond/scratch'
+scratch_dir   = ''
 
 # disable symmetry in all geometries
 nosymmetry = False
 
 # force integral code to use SIMINT only
-simint = True
+simint = False
 
 #################################################################
 # IT SHOULD NOT BE NECESSARY TO MODIFY ANYTHING BELOW THIS LINE #
@@ -4126,6 +4126,8 @@ def print_ccsd(file):
         # than reading them from local disk unless those disks are SCSI (e.g. Chinook).
         if nodisk:
             file.write('  nodisk\n')
+        else:
+            file.write('  #nodisk\n')
         file.write('end\n\n')
         file.write('#set ccsdt:memlimit 8000\n\n')
         file.write('#set ccsd:converged T\n\n')
