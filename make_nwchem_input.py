@@ -33,7 +33,7 @@ permanent_dir = '.'
 # exceptions to this rule are Blue Gene and Cray systems, which either have
 # no local disk or the local disk (on Cray, /tmp) should not be used since
 # it (1) is small (2) is slow (3) will kill the node if it fills up.
-scratch_dir   = ''
+scratch_dir   = '/tmp'
 
 # disable symmetry in all geometries
 nosymmetry = False
