@@ -38,7 +38,7 @@ scratch_dir   = '/tmp'
 nosymmetry = False
 
 # force integral code to use SIMINT only
-simint = True
+simint = False
 
 #################################################################
 # IT SHOULD NOT BE NECESSARY TO MODIFY ANYTHING BELOW THIS LINE #
