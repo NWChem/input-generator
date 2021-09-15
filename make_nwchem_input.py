@@ -3892,7 +3892,6 @@ def print_geom(file,cluster):
   if cluster == "rubrene":
     print_rubrene(file)
   elif cluster[0:3] == "ubi":
-    print('UBIQ')
     print_ubiquitin(file)
   elif cluster == "nsf":
     print_nsf(file)
