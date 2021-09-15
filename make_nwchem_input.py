@@ -162,7 +162,6 @@ def print_ubiquitin(file):
         file.write('  H         1.32610230     4.36202290    -1.85742047\n')
         file.write('  H        -5.55568790     4.22360296     0.69405940\n')
         file.write('  H        -0.54852316    -6.72763283    -0.57488815\n')
-        file.write('  \n')
         file.write('end\n\n')
 
 #------------
