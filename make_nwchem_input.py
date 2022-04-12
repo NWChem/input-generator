@@ -10,9 +10,9 @@ import sys
 
 # this is probably reasonable on a system with 4 GB per MPI process
 # (assuming running 1 MPI per core, which is not always optimal)
-stack_mem=2000
+stack_mem=8000
 heap_mem=100
-global_mem=2000
+global_mem=8000
 
 # Do not store semidirect CCSD integrals on disk.
 # This is appropriate if your CPU is much faster than your filesystem.
@@ -21,7 +21,8 @@ nodisk = False
 # Use OpenMP support in semidirect CCSD(T).
 # You must compile your binary with USE_OPENMP for this to be effective.
 openmp = False
-openacc = False
+openacc = True
+gpubench = True
 
 # these are the paths where you job will write files
 # this is the directory where the RTDB and MOVECS files will be written.
@@ -33,7 +34,7 @@ permanent_dir = '.'
 # exceptions to this rule are Blue Gene and Cray systems, which either have
 # no local disk or the local disk (on Cray, /tmp) should not be used since
 # it (1) is small (2) is slow (3) will kill the node if it fills up.
-scratch_dir   = ''
+scratch_dir   = '/tmp'
 
 # disable symmetry in all geometries
 nosymmetry = False
@@ -4129,18 +4130,18 @@ def print_ccsd(file):
         else:
             file.write('  #nodisk\n')
         file.write('end\n\n')
-        file.write('#set ccsdt:memlimit 8000\n\n')
-        file.write('#set ccsd:converged T\n\n')
-        # Set to true to use OpenMP
-        if openacc:
-            file.write('set ccsd:use_ccsd_omp T\n')
-            file.write('set ccsd:use_trpdrv_openacc T\n\n')
-        elif openmp:
-            file.write('set ccsd:use_ccsd_omp T\n')
-            file.write('set ccsd:use_trpdrv_omp T\n\n')
-        else:
-            file.write('set ccsd:use_ccsd_omp F\n')
-            file.write('set ccsd:use_trpdrv_omp T\n\n')
+        if not gpubench:
+            file.write('#set ccsdt:memlimit 8000\n\n')
+            file.write('#set ccsd:converged T\n\n')
+            if openacc:
+                file.write('set ccsd:use_ccsd_omp F\n')
+                file.write('set ccsd:use_trpdrv_openacc T\n\n')
+            elif openmp:
+                file.write('set ccsd:use_ccsd_omp T\n')
+                file.write('set ccsd:use_trpdrv_omp T\n\n')
+            else:
+                file.write('set ccsd:use_ccsd_omp F\n')
+                file.write('set ccsd:use_trpdrv_omp T\n\n')
 
 def print_tce(file,method):
         file.write('tce\n')
@@ -4220,7 +4221,23 @@ elif ( "mp2" in method ):
 elif ( "rccsd" in method ):
     print_scf(file,method,cluster,basis,False)
     print_ccsd(file)
-    file.write('task '+method.replace("r", "").replace("-t","(t)")+' '+task+'\n\n')
+    if gpubench:
+        file.write('task ccsd energy\n\n')
+        file.write('set ccsdt:memlimit 8000\n')
+        file.write('set ccsd:converged T\n')
+        file.write('set ccsd:use_ccsd_omp F\n')
+        file.write('set ccsd:use_trpdrv_omp F\n')
+        file.write('set ccsd:use_trpdrv_openacc T\n\n')
+        file.write('task ccsd(t) energy\n\n')
+        file.write('set ccsdt:memlimit 8000\n')
+        file.write('set ccsd:converged T\n')
+        file.write('set ccsd:use_ccsd_omp F\n')
+        file.write('set ccsd:use_trpdrv_omp T\n')
+        file.write('set ccsd:use_trpdrv_openacc F\n\n')
+        file.write('task ccsd(t) energy\n\n')
+    else:
+        file.write('task '+method.replace("r", "").replace("-t","(t)")+' '+task+'\n\n')
+
 # this conditional must be after the one above it for the parsing to work...
 elif ( "cc" in method or "mbpt" in method or "cis" in method ):
     print_scf(file,method,cluster,basis,False)
