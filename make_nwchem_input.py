@@ -69,6 +69,7 @@ if ( len(sys.argv) != 5 ):
         print("")
         print("<basis> can be 6-31[1][++]G[**], [aug-]cc-p[c]v[*]z, roos-[dt]z")
         print("               (where s = * and p = + because otherwise input files are difficult to deal with)")
+        print("               (you can use aXz as a shortcut for aug-cc-pvXz)")
         print("")
         print("               Note: There is no pre-defined RI basis for Pople basis sets,")
         print("                     so that will not be configured automatically, whereas")
