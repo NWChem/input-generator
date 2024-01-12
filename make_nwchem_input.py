@@ -69,7 +69,7 @@ if ( len(sys.argv) != 5 ):
         print("")
         print("<basis> can be 6-31[1][++]G[**], [aug-]cc-p[c]v[*]z, roos-[dt]z")
         print("               (where s = * and p = + because otherwise input files are difficult to deal with)")
-        print("               (you can use aXz as a shortcut for aug-cc-pvXz)")
+        print("               (you can use [d]aXz as a shortcut for aug-cc-pvXz)")
         print("")
         print("               Note: There is no pre-defined RI basis for Pople basis sets,")
         print("                     so that will not be configured automatically, whereas")
@@ -4043,7 +4043,13 @@ def print_basis(file,basis,method):
             if ( method == "ri-mp2" ):
                 print('ERROR: <basis> = '+basis+' does not have a corresponding RI basis.\n')
                 sys.exit()
-        elif ( "cc-pv" in basis ):
+        elif ( "cc-pv" in basis or (basis[0:1] == "a" and basis[2:3] == "z")
+                                or (basis[0:2] == "da" and basis[3:4] == "z")):
+            if (basis[0:1] == "a" and basis[2:3] == "z"):
+                basis = "aug-cc-pv" + basis[1:2] + "z"
+            elif (basis[0:2] == "da" and basis[3:4] == "z"):
+                basis = "d-aug-cc-pv" + basis[2:3] + "z"
+
             file.write('basis "ao basis" spherical noprint\n')
             file.write('  * library '+basis+'\n')
             file.write('end\n\n')
